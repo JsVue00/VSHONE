@@ -6,10 +6,7 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:vue/vue3-recommended',
-    '@vue/airbnb',
-    '@vue/typescript/recommended',
-    "some-other-config-you-use",
-    "prettier",
+    'prettier'
   ],
   parserOptions: {
     ecmaVersion: 2020,
@@ -38,7 +35,8 @@ module.exports = {
       },
     },
     {
-      files: ['**/Icons.vue'],
+      files: ['**/Icons.vue', '**/__tests__/*.{j,t}s?(x)',
+        '**/tests/unit/**/*.spec.{j,t}s?(x)',],
       rules: {
         'max-len': 'off',
       },
