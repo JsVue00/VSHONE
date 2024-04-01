@@ -1,0 +1,26 @@
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    width: 8px;
+    background: #ccc;
+    border-radius: 15px;
+}
+
+:root {
+    --primary: #1d4ed8;
+    --secondary: #facc15;
+    --text1: #ffffff;
+    --text2: #020617;
+    --text3: #65a30d;
+    --link: #0345fb;
+    --success: #16a34a;
+    --active: #65a30d;
+    --failure: #dc2626;
+    --border: #78716c;
+    --background: #ffffff;
+    --background1: #172554;
+    --background2: #0f172a;
+
+}

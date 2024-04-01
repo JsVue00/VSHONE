@@ -12,9 +12,20 @@ const router = createRouter({
       meta: { Layout: DefaultLayout }
     },
     {
+      path: '/test',
+      name: 'test',
+      component: () => import('@/pages/NotFound.vue')
+    },
+    {
       path: '/login',
       name: 'login',
       component: () => import('@/pages/authentication/LoginPage.vue'),
+      meta: { Layout: LoginLayout }
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('@/pages/authentication/RegisterPage.vue'),
       meta: { Layout: LoginLayout }
     },
     ...gameRoutes

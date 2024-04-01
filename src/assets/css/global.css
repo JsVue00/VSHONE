@@ -1,0 +1,17 @@
+@import "app.css";
+
+/* El class override */
+.el-button--primary {
+    background-color: var(--primary) !important;
+    border: none !important;
+    opacity: 1;
+    transition: opacity .5s ease-out !important;
+}
+
+.el-button--primary:hover {
+    opacity: 80%;
+}
+
+.el-input__wrapper.is-focus {
+    border-color: var(--success) !important;
+}
