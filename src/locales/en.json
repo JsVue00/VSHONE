@@ -1,0 +1,15 @@
+{
+    "language": "English",
+    "home": "Home",
+    "login": "Login",
+    "logout": "Logout",
+    "header": {
+        "": ""
+    },
+    "body": {
+        "question": "Question"
+    },
+    "games": {
+        "game_iq": "Game IQ"
+    }
+}

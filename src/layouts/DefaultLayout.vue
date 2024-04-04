@@ -1,12 +1,12 @@
 <template>
-   <div class=" flex-col flex relative">
-    <nav  class=" sticky top-0" @scroll="handleScroll">
-        <TheHeading/>
+  <div class="flex-col flex relative">
+    <nav class="sticky top-0" @scroll="handleScroll">
+      <TheHeading />
     </nav>
-    <div class="min-h-[100vh]">
-        <router-view></router-view>
+    <div class="h-full">
+      <router-view></router-view>
     </div>
-   </div>
+  </div>
 </template>
 <script lang="ts" setup>
 import TheHeading from '@/components/TheHeading.vue';
@@ -15,16 +15,16 @@ const showElement = ref(false);
 const lastScrollTop = ref(0);
 
 const handleScroll = (event: any) => {
-      const scrollTop = event.target.scrollTop;
+  const scrollTop = event.target.scrollTop;
 
-      if (scrollTop > lastScrollTop.value) {
-        // Scrolling down
-        showElement.value = false;
-      } else {
-        // Scrolling up
-        showElement.value = true;
-      }
+  if (scrollTop > lastScrollTop.value) {
+    // Scrolling down
+    showElement.value = false;
+  } else {
+    // Scrolling up
+    showElement.value = true;
+  }
 
-    lastScrollTop.value = scrollTop;
-    }
+  lastScrollTop.value = scrollTop;
+};
 </script>

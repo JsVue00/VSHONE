@@ -1,18 +1,18 @@
-import { reactive, ref } from 'vue'
-import type { FormInstance, FormRules } from 'element-plus'
+import { reactive, ref } from 'vue';
+import type { FormInstance, FormRules } from 'element-plus';
 
 export default function useLogin() {
   interface RuleForm {
-    email: string
-    password: string
+    email: string;
+    password: string;
   }
 
-  const formSize = ref('default')
-  const loginFormRule = ref<FormInstance>()
+  const formSize = ref('default');
+  const loginFormRule = ref<FormInstance>();
   const loginRequestForm = reactive<RuleForm>({
     email: '',
     password: ''
-  })
+  });
 
   const rules = reactive<FormRules<RuleForm>>({
     email: [
@@ -28,23 +28,23 @@ export default function useLogin() {
       }
     ],
     password: [{ required: true, message: 'Required', min: 6, max: 20, trigger: 'blur' }]
-  })
+  });
 
   const onUserSubmit = async (formEl: FormInstance | undefined) => {
-    if (!formEl) return
+    if (!formEl) return;
     await formEl.validate((valid, fields) => {
       if (valid) {
-        console.log('submit!')
+        console.log('submit!');
       } else {
-        console.log('error submit!', fields)
+        console.log('error submit!', fields);
       }
-    })
-  }
+    });
+  };
 
   const resetForm = (formEl: FormInstance | undefined) => {
-    if (!formEl) return
-    formEl.resetFields()
-  }
+    if (!formEl) return;
+    formEl.resetFields();
+  };
 
   return {
     rules,
@@ -53,5 +53,5 @@ export default function useLogin() {
     loginRequestForm,
     formSize,
     resetForm
-  }
+  };
 }
