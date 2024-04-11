@@ -45,8 +45,8 @@ const { answer, isWon, isSelected, myQuestion, disabledRoute, onPlayerSelected, 
   top: 50%;
   left: 50%;
   opacity: 0;
-  transform: translate(-50%, -50%) scale(1); /* Initial scale set to 1 */
-  animation: changeFont 2s linear forwards; /* Added 'forwards' to keep the final state */
+  transform: translate(-50%, -50%) scale(1);
+  animation: changeFont 2s linear forwards;
 }
 
 @keyframes changeFont {
