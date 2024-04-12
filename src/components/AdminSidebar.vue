@@ -1,5 +1,8 @@
 <template>
-  <div class="h-[calc(100vh-50px)] w-[250px] bg-background1 overflow-y-auto">
+  <div
+    :class="{ 'sidebar-close': !store.isShowSidebar }"
+    class="sidebar h-[calc(100vh-50px)] bg-background1 overflow-x-hidden overflow-y-auto"
+  >
     <el-col>
       <el-menu
         v-for="(nav, index) in navPages"
@@ -34,9 +37,9 @@
 </template>
 <script lang="ts" setup>
 import { User, DataAnalysis } from '@element-plus/icons-vue';
-// import { ref, computed } from 'vue';
-// import { useRoute } from 'vue-router';
+import { appStore } from '@/stores';
 
+const store = appStore();
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath);
 };
@@ -71,3 +74,12 @@ const navPages = [
   }
 ];
 </script>
+<style scoped>
+.sidebar {
+  width: 250px;
+  transition: width 0.5s ease;
+}
+.sidebar-close {
+  width: 0;
+}
+</style>
