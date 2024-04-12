@@ -15,3 +15,12 @@
 .el-input__wrapper.is-focus {
     border-color: var(--success) !important;
 }
+
+:root {
+    --el-menu-active-color: var(--secondary) !important;
+    --el-menu-text-color: var(--text1) !important;
+    --el-menu-hover-text-color: red !important;
+    --el-menu-hover-bg-color: var(--primary) !important;
+    --el-menu-bg-color: var(--background1) !important;
+    --el-menu-border-color: transparent !important;
+}

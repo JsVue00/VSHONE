@@ -1,4 +1,3 @@
-import SwitchLanguageButton from './SwitchLanguageButton.vue';
 <template>
   <footer>
     <div

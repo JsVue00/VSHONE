@@ -11,5 +11,12 @@
     },
     "games": {
         "game_iq": "Game IQ"
+    },
+    "sidebar": {
+        "user_management": "User Management",
+        "user_list":"User List",
+
+        "question": "Questions",
+        "question_list": "Question List"
     }
 }

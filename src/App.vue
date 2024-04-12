@@ -4,8 +4,4 @@
       <router-view></router-view>
     </component>
   </div>
-  <TheFooter />
 </template>
-<script lang="ts" setup>
-import TheFooter from '@/components/TheFooter.vue';
-</script>

@@ -3,6 +3,7 @@ import LoginLayout from '@/layouts/LoginLayout.vue';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import GameLayout from '@/layouts/GameLayout.vue';
 import gameRoutes from './game';
+import AdminLayout from '@/layouts/AdminLayout.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -12,6 +13,27 @@ const router = createRouter({
       component: () => import('@/pages/HomePage.vue'),
       meta: { Layout: DefaultLayout }
     },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: () => import('@/pages/admin/AdminPage.vue'),
+      meta: { Layout: AdminLayout, requiredAuth: true },
+      children: [
+        {
+          path: 'userList',
+          name: 'userList',
+          component: () => import('@/pages/admin/UserListPage.vue'),
+          meta: { Layout: AdminLayout, requiredAuth: true }
+        },
+        {
+          path: 'questionList',
+          name: 'questionList',
+          component: () => import('@/pages/admin/QuestionListPage.vue'),
+          meta: { Layout: AdminLayout, requiredAuth: true }
+        }
+      ]
+    },
+
     {
       path: '/test',
       name: 'test',
@@ -32,16 +54,17 @@ const router = createRouter({
     ...gameRoutes
   ]
 });
+const isToken = 'sdsfgdsfdsf';
 
 router.beforeEach((to, from, next) => {
   if (to.meta.Layout === LoginLayout) {
     document.title = `${to.name?.toString().charAt(0).toUpperCase()}${to.name?.toString().slice(1)}`;
   } else if (to.meta.Layout === GameLayout) {
-    document.title = 'Welcome to game';
+    document.title = 'Welcome Quiz';
   } else {
     document.title = 'VSHONE';
   }
-
+  if (to.meta.requiredAuth && !isToken) next('/login');
   next();
 });
 

@@ -11,4 +11,3 @@
 <script lang="ts" setup>
 import TheGameHeading from '@/components/TheGameHeading.vue';
 </script>
-<style scoped></style>
