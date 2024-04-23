@@ -11,7 +11,14 @@
         @open="handleOpen"
         @close="handleClose"
       >
-        <el-sub-menu :index="nav.index">
+        <el-sub-menu
+          :index="nav.index"
+          :style="{
+            backgroundColor: nav.subMenu.some((sub) => $route.path.includes(sub.link))
+              ? 'var(--primaryHover)'
+              : ''
+          }"
+        >
           <template #title>
             <!-- <el-icon :icon="nav.icon"></el-icon> -->
             <span>{{ $t(`sidebar.${nav.menu}`) }}</span>
@@ -47,39 +54,56 @@ const handleClose = (key: string, keyPath: string[]) => {
   console.log(key, keyPath);
 };
 
-// const isOpen = (): string => {
-//   return '1';
-// };
-
 const navPages = [
   {
     index: '1',
     icon: User,
     menu: 'user_management',
-    subMenu: [{ index: '1-1', subMenuName: 'user_list', pathName: 'userList', link: 'userList' }]
+    subMenu: [
+      { index: '1-1', subMenuName: 'user_list', pathName: 'userList', link: 'userList' },
+      { index: '1-2', subMenuName: 'user_list', pathName: 'userList', link: '/#' }
+    ]
   },
   {
     index: '2',
     icon: DataAnalysis,
-    menu: 'question',
+    menu: 'quizzes',
     subMenu: [
+      { index: '2-2', subMenuName: 'category', pathName: 'questionList', link: '/#' },
+      { index: '2-2', subMenuName: 'category', pathName: 'questionList', link: '/#' },
+      {
+        index: '2-2',
+        subMenuName: 'create_new_quiz',
+        pathName: 'create-new-quiz',
+        link: '/create-new-quiz'
+      },
       {
         index: '2-1',
-        subMenuName: 'question_list',
+        subMenuName: 'quizzes',
         pathName: 'questionList',
         link: '/questionList'
-      },
-      { index: '2-2', subMenuName: 'user_list', pathName: 'questionList', link: '/#' }
+      }
     ]
   }
 ];
 </script>
 <style scoped>
 .sidebar {
+  /* position: absolute; */
   width: 250px;
   transition: width 0.5s ease;
+  box-sizing: border-box;
+  float: left;
 }
 .sidebar-close {
-  width: 0;
+  width: 0 !important;
+}
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 0;
+  }
+  .sidebar-open {
+    width: 250px;
+  }
 }
 </style>

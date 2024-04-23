@@ -14,7 +14,7 @@ const router = createRouter({
       meta: { Layout: DefaultLayout }
     },
     {
-      path: '/admin',
+      path: '/admin-sh/my-dashboard',
       name: 'admin',
       component: () => import('@/pages/admin/AdminPage.vue'),
       meta: { Layout: AdminLayout, requiredAuth: true },
@@ -28,7 +28,13 @@ const router = createRouter({
         {
           path: 'questionList',
           name: 'questionList',
-          component: () => import('@/pages/admin/QuestionListPage.vue'),
+          component: () => import('@/pages/admin/QuizListPage.vue'),
+          meta: { Layout: AdminLayout, requiredAuth: true }
+        },
+        {
+          path: 'create-new-quiz',
+          name: 'create-new-quiz',
+          component: () => import('@/pages/admin/CreateNewQuizPage.vue'),
           meta: { Layout: AdminLayout, requiredAuth: true }
         }
       ]
@@ -51,7 +57,12 @@ const router = createRouter({
       component: () => import('@/pages/authentication/RegisterPage.vue'),
       meta: { Layout: LoginLayout }
     },
-    ...gameRoutes
+
+    ...gameRoutes,
+    {
+      path: '/:catchAll(.*)',
+      component: () => import('@/pages/NotFound.vue')
+    }
   ]
 });
 const isToken = 'sdsfgdsfdsf';

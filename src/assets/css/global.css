@@ -17,6 +17,7 @@
 }
 
 :root {
+
     --el-menu-active-color: var(--secondary) !important;
     --el-menu-text-color: var(--text1) !important;
     --el-menu-hover-text-color: red !important;
