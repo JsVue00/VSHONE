@@ -16,6 +16,10 @@
     border-color: var(--success) !important;
 }
 
+.el-table {
+    border-radius: 5px !important;
+}
+
 :root {
 
     --el-menu-active-color: var(--secondary) !important;
