@@ -10,7 +10,7 @@
 
 :root {
     --primary: #1d4ed8;
-    --primaryHover: #356afa;
+    --primaryHover: #678ef7;
     --secondary: #facc15;
     --text1: #ffffff;
     --text2: #020617;
@@ -21,7 +21,7 @@
     --failure: #dc2626;
     --border: #78716c;
     --background: #ffffff;
-    --background1: #172554;
+    --background1: #0c013b;
     --background2: #0f172a;
 
 }

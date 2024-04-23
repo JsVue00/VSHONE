@@ -1,5 +1,5 @@
 {
-    "language": "English",
+    "language": "ខ្មែរ",
     "home": "Home",
     "login": "Login",
     "logout": "Logout",
@@ -7,16 +7,22 @@
         "": ""
     },
     "body": {
-        "question": "Question"
+        "quiz": "Quiz"
     },
     "games": {
         "game_iq": "Game IQ"
+    },
+    "quiz":{
+        "create_new": "Create New"
     },
     "sidebar": {
         "user_management": "User Management",
         "user_list":"User List",
 
-        "question": "Questions",
+        "quizzes": "Quizzes",
+        "category": "Category",
+        "sub_category": "Sub Category",
+        "create_new_quiz": "Create new quiz",
         "question_list": "Question List"
     }
 }

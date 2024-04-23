@@ -1,11 +1,13 @@
 <template>
-  <div class="h-screen w-full">
+  <div class="h-screen w-screen">
     <nav>
       <AdminHeader />
     </nav>
     <main class="flex">
-      <AdminSidebar />
-      <div class="container p-2">
+      <div>
+        <AdminSidebar />
+      </div>
+      <div class="container p-2 overflow-x-auto min-h-full bg-gray-300">
         <router-view></router-view>
       </div>
     </main>

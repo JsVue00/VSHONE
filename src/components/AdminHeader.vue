@@ -9,13 +9,24 @@
         </el-icon>
       </button>
     </div>
+
+    <div class="time">
+      {{ dateTime }}
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { Expand } from '@element-plus/icons-vue';
 import { appStore } from '@/stores';
+import { ref, onMounted } from 'vue';
 const store = appStore();
+const dateTime = ref();
+onMounted(() => {
+  setInterval(() => {
+    dateTime.value = new Date();
+  }, 100);
+});
 </script>
 
 <style scoped>
