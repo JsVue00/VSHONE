@@ -32,6 +32,12 @@ const router = createRouter({
           meta: { Layout: AdminLayout, requiredAuth: true }
         },
         {
+          path: 'category-list',
+          name: 'category-list',
+          component: () => import('@/pages/admin/categories/CategoryListPage.vue'),
+          meta: { Layout: AdminLayout, requiredAuth: true }
+        },
+        {
           path: 'create-new-quiz',
           name: 'create-new-quiz',
           component: () => import('@/pages/admin/CreateNewQuizPage.vue'),

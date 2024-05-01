@@ -1,6 +1,9 @@
 {
     "language": "Englist",
     "home": "ផ្ទះ",
+    "c": "C",
+    "create_new_category":"បង្កើតប្រភេទថ្មី",
+    "create_new_quiz": "បង្កើតសំនួរថ្មី",
     "header": {
         "": ""
     },

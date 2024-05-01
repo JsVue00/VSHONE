@@ -1,28 +1,51 @@
 {
-    "language": "ខ្មែរ",
-    "home": "Home",
-    "login": "Login",
-    "logout": "Logout",
-    "header": {
-        "": ""
-    },
-    "body": {
-        "quiz": "Quiz"
-    },
-    "games": {
-        "game_iq": "Game IQ"
-    },
-    "quiz":{
-        "create_new": "Create New"
-    },
-    "sidebar": {
-        "user_management": "User Management",
-        "user_list":"User List",
+  "a": "A",
+  "language": "ខ្មែរ",
+  "home": "Home",
+  "login": "Login",
+  "logout": "Logout",
 
-        "quizzes": "Quizzes",
-        "category": "Category",
-        "sub_category": "Sub Category",
-        "create_new_quiz": "Create new quiz",
-        "question_list": "Question List"
-    }
+  "c": "C",
+  "cacel": "Cancel",
+  "category": "Category",
+  "category_name": "Category Name",
+  "category_list": "Category List",
+  "create": "Create",
+  "create_new": "Create New",
+  "create_new_category": " Create New Category",
+  "create_new_quiz": "Create New Quiz",
+  "correct_answer": "Correct Answer",
+
+  "d": "D",
+  "delete": "Delete",
+  "e": "E",
+
+  "f": "F",
+
+  "g": "G",
+  "game_name": "Game Name",
+
+  "o": "O",
+  "options": "Options",
+
+  "q": "Q",
+  "quizzes": "Quizzes",
+  "quiz_list": "Quiz List",
+  "question": "Question",
+
+  "r": "R",
+  "remark": "Remark",
+
+  "s": "S",
+  "save": "Save",
+  "select": "Select",
+  "sub_category": "Subcategory",
+  "sub_category_name": "Subcategory Name",
+
+  "t": "T",
+  "title": "Title",
+  "the_maximum_of_answer_is": "The maximum of answer is",
+  "u": "U",
+  "user_list": "User List",
+  "user_management": "User Management"
 }

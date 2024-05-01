@@ -1,15 +1,16 @@
 <template>
   <div class="overflow-auto">
-    <div class="flex justify-end w-full py-2">
+    <AdminFormHeader :title="$t('quiz_list')">
       <el-button type="primary" @click="$router.push({ name: 'create-new-quiz' })">{{
-        $t('quiz.create_new')
+        $t('create_new')
       }}</el-button>
-    </div>
+    </AdminFormHeader>
     <DataTable />
   </div>
 </template>
 <script lang="ts" setup>
-import DataTable from '@/components/DataTable.vue';
+import DataTable from '@/components/admin/DataTable.vue';
 import { appStore } from '@/stores';
+import AdminFormHeader from '@/components/admin/FormHeader.vue';
 const store = appStore();
 </script>

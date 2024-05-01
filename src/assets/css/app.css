@@ -1,20 +1,25 @@
 ::-webkit-scrollbar {
     width: 8px;
+    height: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
     width: 8px;
-    background: #ccc;
+    background: #7f7f7f;
     border-radius: 15px;
 }
 
+
+
 :root {
+    --titleFont: 20px;
     --primary: #1d4ed8;
     --primaryHover: #678ef7;
     --secondary: #facc15;
     --text1: #ffffff;
     --text2: #020617;
     --text3: #65a30d;
+    --text4: #0c013b;
     --link: #0345fb;
     --success: #16a34a;
     --active: #65a30d;
