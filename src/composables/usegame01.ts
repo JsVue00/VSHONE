@@ -1,6 +1,6 @@
 import { ref, onMounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { type Game01 } from '@/models/responses/game01';
+import { type Game01 } from '@/models/game01';
 export default function useGame01() {
   const route = useRoute();
   const router = useRouter();

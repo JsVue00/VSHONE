@@ -7,9 +7,11 @@ export default {
   theme: {
     extend: {
       colors: {
+        titleFont: 'var(--titleFont)',
         text1: 'var(--text1)',
         text2: 'var(--text2)',
         text3: 'var(--text3)',
+        text4: 'var(--text4)',
         link:'var(--link)',
         success: 'var(--success)',
         active: 'var(--active)',

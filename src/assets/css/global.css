@@ -6,6 +6,7 @@
     border: none !important;
     opacity: 1;
     transition: opacity .5s ease-out !important;
+    height: 25px;
 }
 
 .el-button--primary:hover {
@@ -20,12 +21,24 @@
     border-radius: 5px !important;
 }
 
-:root {
+.my-table-header {
+    color: white !important;
+    background-color: var(--background1) !important;
+}
 
+:root {
     --el-menu-active-color: var(--secondary) !important;
     --el-menu-text-color: var(--text1) !important;
     --el-menu-hover-text-color: red !important;
     --el-menu-hover-bg-color: var(--primary) !important;
-    --el-menu-bg-color: var(--background1) !important;
+    --el-menu-bg-color: var(--background2) !important;
     --el-menu-border-color: transparent !important;
+    --el-menu-item-height: 40px !important;
+    --el-menu-sub-item-height: 40px !important;
+
+    /* Table  */
+    --el-table-header-text-color: var(--text2) !important;
+
+    /* --el-color-white: red !important; */
+    /* --el-bg-color-overlay: var(--background1) !important; */
 }

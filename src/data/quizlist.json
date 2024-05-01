@@ -1,0 +1,30 @@
+{
+    "data":[
+        {
+            "id": 0,
+            "categoryId": 1,
+            "userId": 2,
+            "gameName": "YourGameName",
+            "title": "YourTitle",
+            "question": "What is my name?",
+            "image": "YourImage",
+            "options": ["Option1", "Option2", "Option3"],
+            "correctAnswer": 1,
+            "answered": false
+        },
+        {
+            "id": 0,
+            "categoryId": 1,
+            "userId": 2,
+            "gameName": "YourGameName",
+            "title": "YourTitle",
+            "question": "What is my name?",
+            "image": "YourImage",
+            "options": ["Option1", "Option2", "Option3"],
+            "correctAnswer": 1,
+            "answered": false
+        }
+        
+        
+    ]
+}

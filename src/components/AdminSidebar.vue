@@ -21,7 +21,7 @@
         >
           <template #title>
             <!-- <el-icon :icon="nav.icon"></el-icon> -->
-            <span>{{ $t(`sidebar.${nav.menu}`) }}</span>
+            <span>{{ $t(nav.menu) }}</span>
           </template>
           <router-link
             v-for="(sub, index) in nav.subMenu"
@@ -30,11 +30,11 @@
           >
             <el-menu-item
               :style="{
-                backgroundColor: $route.path.includes(sub.link) ? 'var(--primary)' : '',
-                color: $route.path.includes(sub.link) ? 'var(--secondary)' : 'white'
+                backgroundColor: $route.path.includes(sub.pathName) ? 'var(--primary)' : '',
+                color: $route.path.includes(sub.pathName) ? 'var(--secondary)' : 'white'
               }"
               index="1-1"
-              >{{ $t(`sidebar.${sub.subMenuName}`) }}</el-menu-item
+              >{{ $t(sub.subMenuName) }}</el-menu-item
             >
           </router-link>
         </el-sub-menu>
@@ -69,7 +69,12 @@ const navPages = [
     icon: DataAnalysis,
     menu: 'quizzes',
     subMenu: [
-      { index: '2-2', subMenuName: 'category', pathName: 'questionList', link: '/#' },
+      {
+        index: '2-2',
+        subMenuName: 'category_list',
+        pathName: 'category-list',
+        link: '/category-list'
+      },
       { index: '2-2', subMenuName: 'category', pathName: 'questionList', link: '/#' },
       {
         index: '2-2',
@@ -89,7 +94,6 @@ const navPages = [
 </script>
 <style scoped>
 .sidebar {
-  /* position: absolute; */
   width: 250px;
   transition: width 0.5s ease;
   box-sizing: border-box;
