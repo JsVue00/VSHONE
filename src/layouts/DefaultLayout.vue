@@ -1,8 +1,8 @@
 <template>
   <div class="flex-col flex relative">
-    <nav class="sticky top-0" @scroll="handleScroll">
+    <!-- <nav class="sticky top-0" @scroll="handleScroll">
       <TheHeading />
-    </nav>
+    </nav> -->
     <div class="h-full">
       <router-view></router-view>
     </div>

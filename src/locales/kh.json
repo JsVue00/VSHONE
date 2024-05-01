@@ -1,16 +1,51 @@
 {
-    "language": "Englist",
-    "home": "ផ្ទះ",
-    "c": "C",
-    "create_new_category":"បង្កើតប្រភេទថ្មី",
-    "create_new_quiz": "បង្កើតសំនួរថ្មី",
-    "header": {
-        "": ""
-    },
-    "body": {
-        "question": "សំនួរ"
-    },
-    "games": {
-        "game_iq": "តេស្ដ ល្បងប្រាជ្ញា"
-    }
+  "a": "A",
+  "language": "English",
+  "home": "ផ្ទះ",
+  "login": "ចូល",
+  "logout": "ចាកចេញ",
+
+  "c": "C",
+  "cacel": "បោះបង់",
+  "category": "ប្រភេទ",
+  "category_name": "ឈ្មោះនៃប្រភេទ",
+  "category_list": "តារាងនែប្រភេទ",
+  "create": "បង្កើត",
+  "create_new": "បង្កើតថ្មី",
+  "create_new_category": "បង្កើតប្រភេទថ្មី",
+  "create_new_quiz": "បង្កើតសំណួរថ្មី",
+  "correct_answer": "ចម្លើយត្រឺមត្រូវ",
+
+  "d": "D",
+  "delete": "លុប",
+  "e": "E",
+
+  "f": "F",
+
+  "g": "G",
+  "game_name": "ឈ្មោះល្បែង",
+
+  "o": "O",
+  "options": "ជម្រើស",
+
+  "q": "Q",
+  "quizzes": "កម្រងសំណួរ",
+  "quiz_list": "តារាងសំណួរ",
+  "question": "សំណួរ",
+
+  "r": "R",
+  "remark": "ចំណាំ",
+
+  "s": "S",
+  "save": "រក្សាទុក",
+  "select": "ជ្រើស",
+  "sub_category": "ប្រភេទរង",
+  "sub_category_name": "ឈ្មោះនៃប្រភេទរង",
+
+  "t": "T",
+  "title": "Title",
+  "the_maximum_of_answer_is": "The maximum of answer is",
+  "u": "U",
+  "user_list": "User List",
+  "user_management": "User Management"
 }

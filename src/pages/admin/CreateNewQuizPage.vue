@@ -5,7 +5,7 @@
       <div class="text-center">
         <el-form ref="ruleFormRef" style="max-width: 100%" :model="requestForm" :rules="rules" label-width="auto"
           class="demo-ruleForm" status-icon>
-          <div class="grid lg:grid-cols-2 gap-8 justify-between w-full">
+          <div class="grid lg:grid-cols-2 lg:gap-8 justify-between w-full">
             <div>
               <el-form-item :label="$t('title')" prop="Title">
                 <el-input v-model="requestForm.Title" />
@@ -13,20 +13,14 @@
               <el-form-item :label="$t('question')" prop="name">
                 <el-input v-model="requestForm.Question" />
               </el-form-item>
-              <!-- <el-form-item :label="$t('category_name')" prop="region">
-                <el-select v-model="requestForm.CategoryName" :placeholder="$t('select')">
-                  <el-option label="Zone one" value="shanghai" />
-                </el-select>
-              </el-form-item> -->
+
               <el-form-item :label="$t('sub_category_name')" prop="CategoryId">
                 <el-select v-model="requestForm.CategoryId" :placeholder="$t('select')">
                   <el-option v-for="(cat, index) in categoryData" :key="index" :label="cat.categoryName"
                     :value="cat.categoryId" />
                 </el-select>
               </el-form-item>
-
             </div>
-
             <div class="w-full">
               <el-form-item :label="$t('options')">
                 <div v-for="(option, index) in optionsField" :key="index" class="w-full">
