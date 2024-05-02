@@ -18,5 +18,14 @@ export const appStore = defineStore('appStore', {
       this.isShowSidebar = !this.isShowSidebar;
     }
   },
-  persist: true
+  persist: [
+    {
+      storage: sessionStorage,
+      paths: ['isShowSidebar']
+    },
+    {
+      storage: localStorage,
+      paths: ['locale']
+    }
+  ]
 });
