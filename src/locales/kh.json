@@ -8,8 +8,8 @@
   "c": "C",
   "cacel": "បោះបង់",
   "category": "ប្រភេទ",
-  "category_name": "ឈ្មោះនៃប្រភេទ",
-  "category_list": "តារាងនែប្រភេទ",
+  "category_name": "ឈ្មោះប្រភេទ",
+  "category_list": "បញ្ជីប្រភេទ",
   "create": "បង្កើត",
   "create_new": "បង្កើតថ្មី",
   "create_new_category": "បង្កើតប្រភេទថ្មី",
@@ -30,7 +30,7 @@
 
   "q": "Q",
   "quizzes": "កម្រងសំណួរ",
-  "quiz_list": "តារាងសំណួរ",
+  "quiz_list": "បញ្ជីសំណួរ",
   "question": "សំណួរ",
 
   "r": "R",
@@ -43,9 +43,10 @@
   "sub_category_name": "ឈ្មោះនៃប្រភេទរង",
 
   "t": "T",
-  "title": "Title",
-  "the_maximum_of_answer_is": "The maximum of answer is",
+  "title": "ចំណងជើង",
+  "the_maximum_of_answer_is": "អាចដាក់ចម្លើយច្រើនបំផុតគឺ",
+
   "u": "U",
-  "user_list": "User List",
-  "user_management": "User Management"
+  "user_list": "បញ្ជីអ្នកប្រើប្រាស់",
+  "user_management": "ការគ្រប់គ្រង អ្នកប្រើប្រាស់"
 }
