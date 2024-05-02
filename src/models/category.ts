@@ -5,8 +5,8 @@ export interface ICategoryRequest {
 }
 
 export interface ICategoryResponse {
-  Id: number;
-  CategoryName: string;
-  Image: string;
-  Description: string;
+  categoryId: number;
+  categoryName: string;
+  image: string;
+  description: string;
 }

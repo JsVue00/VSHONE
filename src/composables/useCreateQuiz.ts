@@ -6,13 +6,10 @@ import type { ICreateQuizRequest, Option } from '@/models/quiz';
 import formHelper from '@/libraries/elementPlusHelper/formHelper';
 import notificationHelper from '@/libraries/notificationHelper';
 import quizApi from '@/apis/quiz/quizApi';
-import useCategory from './useCategory';
 
 export default function useCreateQuiz() {
   const formSize = ref<ComponentSize>('default');
   const ruleFormRef = ref<FormInstance>();
-
-  const { getAllCategories } = useCategory();
 
   const optionsField = ref<Option[]>([
     { model: 'answer1', value: '' },
@@ -56,7 +53,6 @@ export default function useCreateQuiz() {
   });
 
   const createNewQuiz = async () => {
-    resetForm(ruleFormRef);
     const optionsValue = optionsField.value
       .filter((options) => options.value !== '')
       .map((options) => options.value);
@@ -87,9 +83,9 @@ export default function useCreateQuiz() {
     formEl.resetFields();
   };
 
-  onMounted(() => {
-    getAllCategories;
-  });
+  // onMounted(() => {
+  //   // getAllCategories;
+  // });
   return {
     optionsField,
     handleAddOption,

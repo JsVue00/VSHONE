@@ -1,13 +1,7 @@
 import { ElNotification } from 'element-plus';
+import EMessageType from '@/models/enums/enumMessageType';
 
-enum NotificationTypes {
-  Success = 'success',
-  warning = 'warning',
-  Info = 'info',
-  Error = 'error'
-}
-
-const notification = (title: string, message: string, type: NotificationTypes) => {
+const notification = (title: string, message: string, type: EMessageType) => {
   ElNotification({
     title,
     message,
@@ -16,14 +10,20 @@ const notification = (title: string, message: string, type: NotificationTypes) =
 };
 
 const success = (title: string, message: string) => {
-  notification(title, message, NotificationTypes.Success);
+  notification(title, message, EMessageType.Success);
 };
-const error = (title: string | undefined, message: string) => {
-  notification(title!, message, NotificationTypes.Error);
+const error = (title: string, message: string) => {
+  notification(title, message, EMessageType.Error);
 };
-
+const warning = (title: string, message: string) => {
+  notification(title, message, EMessageType.Warning);
+};
+const info = (title: string, message: string) => {
+  notification(title!, message, EMessageType.Info);
+};
 export default {
-  notification,
   success,
-  error
+  error,
+  warning,
+  info
 };

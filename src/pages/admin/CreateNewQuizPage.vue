@@ -65,8 +65,8 @@ import MinusIcon from '@/components/icons/MinusIcon.vue';
 import PlusIcon from '@/components/icons/PlusIcon.vue';
 import useCreateQuiz from '@/composables/useCreateQuiz';
 import useCategory from '@/composables/useCategory';
-
 const { categoryData } = useCategory();
+
 const {
   optionsField,
   handleAddOption,
@@ -75,6 +75,6 @@ const {
   requestForm,
   ruleFormRef,
   rules,
-  onSubmit,
+  onSubmit
 } = useCreateQuiz();
 </script>

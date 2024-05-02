@@ -1,41 +1,23 @@
 <template>
-  <div
-    :class="{ 'sidebar-close': !store.isShowSidebar }"
-    class="sidebar h-[calc(100vh-50px)] bg-background1 overflow-x-hidden overflow-y-auto"
-  >
+  <div :class="{ 'sidebar-close': !store.isShowSidebar }"
+    class="sidebar h-[calc(100vh-50px)] bg-background1 overflow-x-hidden overflow-y-auto">
     <el-col>
-      <el-menu
-        v-for="(nav, index) in navPages"
-        :key="index"
-        class="el-menu-vertical-demo"
-        @open="handleOpen"
-        @close="handleClose"
-      >
-        <el-sub-menu
-          :index="nav.index"
-          :style="{
-            backgroundColor: nav.subMenu.some((sub) => $route.path.includes(sub.link))
-              ? 'var(--primaryHover)'
-              : ''
-          }"
-        >
+      <el-menu v-for="(nav, index) in navPages" :key="index" class="el-menu-vertical-demo" @open="handleOpen"
+        @close="handleClose">
+        <el-sub-menu :index="nav.index" :style="{
+          backgroundColor: nav.subMenu.some((sub) => $route.path.includes(sub.link))
+            ? 'var(--primaryHover)'
+            : ''
+        }">
           <template #title>
             <!-- <el-icon :icon="nav.icon"></el-icon> -->
             <span>{{ $t(nav.menu) }}</span>
           </template>
-          <router-link
-            v-for="(sub, index) in nav.subMenu"
-            :key="index"
-            :to="{ name: `${sub.pathName}` }"
-          >
-            <el-menu-item
-              :style="{
-                backgroundColor: $route.path.includes(sub.pathName) ? 'var(--primary)' : '',
-                color: $route.path.includes(sub.pathName) ? 'var(--secondary)' : 'white'
-              }"
-              index="1-1"
-              >{{ $t(sub.subMenuName) }}</el-menu-item
-            >
+          <router-link v-for="(sub, index) in nav.subMenu" :key="index" :to="{ name: `${sub.pathName}` }">
+            <el-menu-item :style="{
+              backgroundColor: $route.name === sub.pathName ? 'var(--primary)' : '',
+              color: $route.name === sub.pathName ? 'var(--secondary)' : 'white'
+            }" index="1-1">{{ $t(sub.subMenuName) }}</el-menu-item>
           </router-link>
         </el-sub-menu>
       </el-menu>
@@ -75,7 +57,7 @@ const navPages = [
         pathName: 'category-list',
         link: '/category-list'
       },
-      { index: '2-2', subMenuName: 'category', pathName: 'questionList', link: '/#' },
+      { index: '2-2', subMenuName: 'sub_category_list', pathName: 'sub-category-list', link: '/sub-category-list' },
       {
         index: '2-2',
         subMenuName: 'create_new_quiz',
@@ -84,7 +66,7 @@ const navPages = [
       },
       {
         index: '2-1',
-        subMenuName: 'quizzes',
+        subMenuName: 'quiz_list',
         pathName: 'questionList',
         link: '/questionList'
       }
@@ -99,13 +81,16 @@ const navPages = [
   box-sizing: border-box;
   float: left;
 }
+
 .sidebar-close {
   width: 0 !important;
 }
+
 @media screen and (max-width: 768px) {
   .sidebar {
     width: 0;
   }
+
   .sidebar-open {
     width: 250px;
   }

@@ -40,7 +40,8 @@
   "save": "Save",
   "select": "Select",
   "sub_category": "Subcategory",
-  "sub_category_name": "Subcategory Name",
+  "sub_category_name": "Sub Category Name",
+  "sub_category_list": "Sub Category List",
 
   "t": "T",
   "title": "Title",
