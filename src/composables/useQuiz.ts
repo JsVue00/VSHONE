@@ -6,7 +6,6 @@ import type { ICreateQuizRequest, IGetQuizResponse, Option } from '@/models/quiz
 import formHelper from '@/libraries/elementPlusHelper/formHelper';
 import notificationHelper from '@/libraries/notificationHelper';
 import quizApi from '@/apis/quiz/quizApi';
-import categoryApis from '@/apis/category/categoryApi';
 import { appStore } from '@/stores';
 
 export default function useCreateQuiz() {
@@ -17,9 +16,9 @@ export default function useCreateQuiz() {
   const quizData = ref<IGetQuizResponse[]>([]);
 
   async function getAllQuizzes() {
-    const response = await categoryApis.getAllQuizzizApi();
-    quizData.value = response.data.Data;
-    const data = response.data.Data as IGetQuizResponse[];
+    const response = await quizApi.getAllQuizzes();
+    quizData.value = response.data.data as IGetQuizResponse[];
+    const data = response.data.data as IGetQuizResponse[];
     store.quizList = data;
     console.log(store.quizList);
   }

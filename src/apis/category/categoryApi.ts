@@ -1,11 +1,7 @@
 import type { ICategoryRequest } from '@/models/category';
-import api from '../api';
 import categoryApiCalling from './categoyApiCalling';
 
 const categoryApis = {
-  getAllQuizzizApi() {
-    api.get('quiz');
-  },
   getAllCategories() {
     return categoryApiCalling.callGetAllCategories();
   },
