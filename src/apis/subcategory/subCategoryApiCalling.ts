@@ -2,11 +2,10 @@ import type { ISubCategoryRequest } from '@/models/subCategory';
 import api from '../api';
 
 export default {
-  callGetAllSubCategories: async () => {
-    const response = await api.get('subcategory');
-    return response;
+  callGetAllSubCategories() {
+    return api.get('subcategory');
   },
-  callCreateSubCategory: async (request: ISubCategoryRequest) => {
-    return await api.post('subcategory', request);
+  callCreateSubCategory(request: ISubCategoryRequest) {
+    return api.post('subcategory', request);
   }
 };

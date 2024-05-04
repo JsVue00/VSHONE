@@ -3,27 +3,24 @@ import api from '../api';
 import categoryApiCalling from './categoyApiCalling';
 
 const categoryApis = {
-  getAllQuizzizApi: () => api.get('quiz'),
-  getAllCategories: () => {
-    const response = categoryApiCalling.callGetAllCategories();
-    return response;
+  getAllQuizzizApi() {
+    api.get('quiz');
   },
-  createCategory: (request: ICategoryRequest) => {
-    const response = categoryApiCalling.callCreateCategory(request);
-    return response;
+  getAllCategories() {
+    return categoryApiCalling.callGetAllCategories();
+  },
+  createCategory(request: ICategoryRequest) {
+    return categoryApiCalling.callCreateCategory(request);
   },
 
-  deleteCategory: (Id: number) => {
-    const response = categoryApiCalling.callDeleteCategory(Id);
-    return response;
+  deleteCategory(Id: number) {
+    return categoryApiCalling.callDeleteCategory(Id);
   },
-  getCategoryById: (Id: number) => {
-    const response = categoryApiCalling.callGetCategoryById(Id);
-    return response;
+  getCategoryById(Id: number) {
+    return categoryApiCalling.callGetCategoryById(Id);
   },
-  updateCategory: (Id: number, request: ICategoryRequest) => {
-    const response = categoryApiCalling.callUpdateCategory(Id, request);
-    return response;
+  updateCategory(Id: number, request: ICategoryRequest) {
+    return categoryApiCalling.callUpdateCategory(Id, request);
   }
 };
 

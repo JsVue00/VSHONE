@@ -2,11 +2,11 @@ import type { ISubCategoryRequest } from '@/models/subCategory';
 import subCategoryApiCalling from './subCategoryApiCalling';
 
 const subCategoryApis = {
-  getAllSubCategories: async () => {
+  async getAllCategories() {
     const response = await subCategoryApiCalling.callGetAllSubCategories();
     return response.data.Data;
   },
-  createNewSubCategory: async (request: ISubCategoryRequest) => {
+  async createNewSubCategory(request: ISubCategoryRequest) {
     const response = await subCategoryApiCalling.callCreateSubCategory(request);
     return response.data;
   }
