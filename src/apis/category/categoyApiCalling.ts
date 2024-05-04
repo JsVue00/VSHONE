@@ -10,5 +10,11 @@ export default {
   },
   callDeleteCategory: (Id: number) => {
     return api.delete('category?categoryId=' + Id);
+  },
+  callUpdateCategory: (Id: number, request: ICategoryRequest) => {
+    return api.put('category/' + Id, request);
+  },
+  callGetCategoryById: (CategoryId: number) => {
+    return api.get('category/' + CategoryId);
   }
 };

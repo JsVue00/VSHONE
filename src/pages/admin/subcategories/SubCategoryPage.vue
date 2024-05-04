@@ -3,40 +3,49 @@
         <AdminFormHeader :title="$t('category_list')">
             <el-button type="primary" @click="dialogFormVisible = true">{{ $t('create_new') }}</el-button>
         </AdminFormHeader>
-        <CategoryTable :data="categoryData" :is-loading="isLoading" :onDelete="onConfirm" />
+        <SubCategoryTable :data="subCategoryData" :is-loading="isLoading" />
     </div>
     <!-- Dialogin -->
-    <el-dialog v-model="dialogFormVisible" :title="$t('create_new_category')" width="500">
-        <el-form size="small" :model="categoryRequestForm" :rules="rules" ref="ruleFormRef">
+    <el-dialog v-model="dialogFormVisible" :title="isEditing ? $t('update_category') : $t('create_new_category')"
+        width="500">
+        <el-form :model="subCategoryRequestForm" ref="ruleFormRef">
             <el-form-item :label="$t('category_name')" :label-width="formLabelWidth" prop="CategoryName">
-                <el-input v-model="categoryRequestForm.CategoryName" autocomplete="off" placeholder="Enter the value" />
+                <el-input v-model="subCategoryRequestForm.SubCategoryName" autocomplete="off"
+                    placeholder="Enter the value" />
+            </el-form-item>
+            <el-form-item :label="$t('sub_category_name')" prop="CategoryId">
+                <el-select v-model="subCategoryRequestForm.CategoryId" :placeholder="$t('select')">
+                    <el-option v-for="(cat, index) in categoryData" :key="index" :label="cat.CategoryName"
+                        :value="cat.CategoryId" />
+                </el-select>
             </el-form-item>
             <el-form-item :label="$t('remark')" :label-width="formLabelWidth" prop="Description">
-                <el-input v-model="categoryRequestForm.Description" autocomplete="off" placeholder="Enter the value" />
+                <el-input v-model="subCategoryRequestForm.Description" autocomplete="off"
+                    placeholder="Enter the value" />
             </el-form-item></el-form>
         <template #footer>
             <div class="dialog-footer">
-                <el-button type="primary" :loading="isLoading" @click="onSubmit(ruleFormRef)">
-                    Confirm
-                </el-button>
+                <!-- <el-button type="primary" :loading="isLoading"
+                    @click="isEditing ? onConfirmUpdate() : onSubmit(ruleFormRef)">
+                    {{ isEditing ? $t('update') : $t('save') }}
+                </el-button> -->
             </div>
         </template>
     </el-dialog>
+
 </template>
 <script lang="ts" setup>
-import CategoryTable from '@/components/admin/CategoryTable.vue';
+import SubCategoryTable from '@/components/admin/SubCategoryTable.vue';
 import AdminFormHeader from '@/components/admin/FormHeader.vue';
+import useSubCategory from '@/composables/useSubCategory';
 import useCategory from '@/composables/useCategory';
+const { categoryData } = useCategory();
 
-const {
-    onSubmit,
-    onConfirm,
-    ruleFormRef,
-    rules,
+const { subCategoryData,
     dialogFormVisible,
+    subCategoryRequestForm,
     formLabelWidth,
-    categoryRequestForm,
-    categoryData,
-    isLoading
-} = useCategory();
+    isEditing,
+    isLoading,
+    ruleFormRef } = useSubCategory();
 </script>

@@ -1,10 +1,13 @@
+import categoryApis from '@/apis/category/categoryApi';
+import type { IGetQuizResponse } from '@/models/quiz';
 import { defineStore } from 'pinia';
 
 export const appStore = defineStore('appStore', {
   state: () => {
     return {
       locale: 'en',
-      isShowSidebar: true
+      isShowSidebar: true,
+      quizList: [] as IGetQuizResponse[]
     };
   },
   actions: {
@@ -21,7 +24,7 @@ export const appStore = defineStore('appStore', {
   persist: [
     {
       storage: sessionStorage,
-      paths: ['isShowSidebar']
+      paths: ['isShowSidebar', 'quizList']
     },
     {
       storage: localStorage,

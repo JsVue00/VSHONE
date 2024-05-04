@@ -9,8 +9,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import DataTable from '@/components/admin/DataTable.vue';
-import { appStore } from '@/stores';
+import DataTable from '@/components/admin/QuizDataTable.vue';
 import AdminFormHeader from '@/components/admin/FormHeader.vue';
-const store = appStore();
 </script>

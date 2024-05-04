@@ -16,8 +16,8 @@
 
               <el-form-item :label="$t('sub_category_name')" prop="CategoryId">
                 <el-select v-model="requestForm.CategoryId" :placeholder="$t('select')">
-                  <el-option v-for="(cat, index) in categoryData" :key="index" :label="cat.categoryName"
-                    :value="cat.categoryId" />
+                  <el-option v-for="(cat, index) in categoryData" :key="index" :label="cat.CategoryName"
+                    :value="cat.CategoryId" />
                 </el-select>
               </el-form-item>
             </div>
@@ -63,7 +63,7 @@
 import AdminFormHeader from '@/components/admin/FormHeader.vue';
 import MinusIcon from '@/components/icons/MinusIcon.vue';
 import PlusIcon from '@/components/icons/PlusIcon.vue';
-import useCreateQuiz from '@/composables/useCreateQuiz';
+import useCreateQuiz from '@/composables/useQuiz';
 import useCategory from '@/composables/useCategory';
 const { categoryData } = useCategory();
 

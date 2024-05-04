@@ -29,7 +29,7 @@
   </el-dialog>
 </template>
 <script lang="ts" setup>
-import DataTable from '@/components/admin/DataTable.vue';
+import DataTable from '@/components/admin/QuizDataTable.vue';
 import { appStore } from '@/stores';
 import AdminFormHeader from '@/components/admin/FormHeader.vue';
 import useCategory from '@/composables/useCategory';

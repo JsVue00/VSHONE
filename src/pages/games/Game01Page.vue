@@ -1,60 +1,54 @@
 <template>
-  <div class="flex flex-col justify-center items-center w-full p-2 relative">
-    <div v-show="isWon" class="congratulation">Congratulation!!!💗💖</div>
-    <div class="w-full" v-for="item in myQuestion" :key="item.id">
-      <div class="bg-primary px-3 py-1">
-        <span>{{ $t('body.question') }}:</span> {{ item.qa }}
+  <div class="flex flex-col   min-h-screen text-text1 justify-center items-center w-full  relative">
+
+    <div class="md:w-[700px]  bg-sky-900 min-h-screen w-full md:py-4" v-for="item in myQuestion" :key="item.QuizId">
+      <div class="bg-primary  py-1">
+        <div v-show="isWon" class="congratulation text-center">Congratulation!!!💗💖</div>
+
+        <div class="text-[25px] px-4  text-titleFont"> {{ item.Question }}</div>
       </div>
-      <div class="my-2 bg-background1 rounded-sm text-text1 p-1">
-        <div v-for="(a, index) in item.options" :key="index" class="p-4">
-          <label for="text">
-            <input type="radio" :value="index + 1" v-model="answer" @change="isSelected = false" />
-            {{ a }}
-          </label>
+      <div class="  rounded-sm text-text1 p-1">
+        <div v-for="(a, index) in JSON.parse(item.Options)" :key="index" class="p-4">
+          <el-radio-group v-model="answer" style="width: 100%;">
+            <el-radio :value="index + 1" size="large" border style="width: 100%;" @change="isSelected = false">{{ a
+              }}</el-radio>
+          </el-radio-group>
         </div>
       </div>
-      <el-button
-        type="success"
-        :disabled="isSelected"
-        size="small"
-        @click="onPlayerSelected(item.correctAnswer)"
-        >Submit</el-button
-      >
-      <el-button
-        type="warning"
-        :disabled="disabledRoute"
-        class="text-center"
-        size="small"
-        @click="changeGame()"
-        >Next</el-button
-      >
+      <div class="text-center">
+        <el-button type="success" :disabled="isSelected" size="small"
+          @click="onPlayerSelected(item.CorrectAnswer)">Submit</el-button>
+        <el-button type="warning" :disabled="disabledRoute" class="text-center" size="small"
+          @click="changeGame()">Next</el-button>
+      </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
 import useGame01 from '@/composables/usegame01';
 
-const { answer, isWon, isSelected, myQuestion, disabledRoute, onPlayerSelected, changeGame } =
+const { myQuestion, answer, isWon, isSelected, disabledRoute, onPlayerSelected, changeGame } =
   useGame01();
+
 </script>
 
-<style>
-.congratulation {
-  z-index: 999;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(1);
-  animation: changeFont 2s linear forwards;
+<style type="scss">
+.el-radio-group .is-checked {
+  border: 5px green solid !important;
 }
 
-@keyframes changeFont {
-  from {
-    transform: translate(-50%, -50%) scale(1) opacity(1); /* Initial position, scale, and opacity */
-  }
-  to {
-    transform: translate(-50%, -50%) scale(3) opacity(0); /* Final position, scale, and opacity */
-  }
+.el-radio {
+  border-radius: 25px !important;
+  color: var(--text1);
+
+}
+
+.el-radio__label {
+  font-size: 18px !important;
+}
+
+.el-radio__input.is-checked,
+.el-radio__inner {
+  display: none !important;
 }
 </style>

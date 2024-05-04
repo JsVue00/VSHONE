@@ -11,17 +11,17 @@ export interface ICreateQuizRequest {
 }
 
 export interface IGetQuizResponse {
-  quizId: number;
-  categoryId: number;
-  categoryName: string;
-  userId: null;
-  gameName: string;
-  title: string;
-  question: string;
-  image: null;
-  options: string;
-  correctAnswer: number;
-  answered: boolean;
+  QuizId: number;
+  CategoryId: number;
+  CategoryName: string;
+  UserId: null;
+  GameName: string;
+  Title: string;
+  Question: string;
+  Image: null;
+  Options: string;
+  CorrectAnswer: number;
+  Answered: boolean;
 }
 
 export interface Option {

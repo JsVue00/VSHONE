@@ -1,16 +1,16 @@
 import type { ICategoryRequest, ICategoryResponse } from '@/models/category';
 import { ref, onMounted, reactive } from 'vue';
 import notificationHelper from '@/libraries/notificationHelper';
-import APIs from '@/apis/category/adminApis';
+import categoryApis from '@/apis/category/categoryApi';
 import type { FormInstance, FormRules } from 'element-plus';
 import formHelper from '@/libraries/elementPlusHelper/formHelper';
-import MessageBox from '@/libraries/elementPlusHelper/messageBox';
 
 export default function useCategory() {
   const dialogTableVisible = ref(false);
   const dialogFormVisible = ref(false);
   const formLabelWidth = '140px';
   const isLoading = ref(false);
+  const isEditing = ref(false);
   const ruleFormRef = ref<FormInstance>();
 
   const categoryData = ref<ICategoryResponse[]>([]);
@@ -29,7 +29,7 @@ export default function useCategory() {
   async function getAllCategories() {
     isLoading.value = true;
     try {
-      const response = await APIs.getAllCategories();
+      const response = await categoryApis.getAllCategories();
       categoryData.value = response.data;
     } catch (error: any) {
       notificationHelper.error('error', `${error.message}`);
@@ -40,13 +40,13 @@ export default function useCategory() {
 
   const createCategory = async () => {
     isLoading.value = true;
+    const request: ICategoryRequest = {
+      CategoryName: categoryRequestForm.value.CategoryName,
+      Image: categoryRequestForm.value.Image,
+      Description: categoryRequestForm.value.Description
+    };
     try {
-      const request: ICategoryRequest = {
-        CategoryName: categoryRequestForm.value.CategoryName,
-        Image: categoryRequestForm.value.Image,
-        Description: categoryRequestForm.value.Description
-      };
-      const response = await APIs.createCategory(request);
+      const response = await categoryApis.createCategory(request);
       getAllCategories();
       notificationHelper.success('Success', response.data);
     } catch (error: any) {
@@ -56,26 +56,63 @@ export default function useCategory() {
       isLoading.value = false;
     }
   };
-  const deleteCategory = async (Id: number) => {
-    try {
-      await APIs.deleteCategory(Id);
-      notificationHelper.success('Success', 'Delete category successfully');
-      getAllCategories();
-    } catch (error) {
-      notificationHelper.error('Error', 'Error');
-    }
-  };
-  const onConfirm = (Id: number) => {
-    MessageBox.onConfirm(async () => deleteCategory(Id), 'Do you want to delete?');
-  };
 
   const onSubmit = formHelper.onSubmitForm(createCategory);
 
+  // edit
+
+  async function getCategoryById(Id: number) {
+    try {
+      const response = await categoryApis.getCategoryById(Id);
+      const data: ICategoryResponse = response.data;
+      categoryRequestForm.value.CategoryName = data.CategoryName;
+      categoryRequestForm.value.Description = data.Description;
+    } catch (error) {
+      console.error('Error fetching category:', error);
+    }
+  }
+
+  const requestId = ref(0);
+  const onOpenEditForm = async (Id: number) => {
+    requestId.value = Id;
+    dialogFormVisible.value = true;
+    isEditing.value = true;
+    try {
+      await getCategoryById(Id);
+    } catch (error) {
+      console.error('Error updating category:', error);
+    }
+  };
+
+  const onConfirmUpdate = async () => {
+    isLoading.value = true;
+    try {
+      const response = await categoryApis.updateCategory(
+        requestId.value,
+        categoryRequestForm.value
+      );
+      console.log(response);
+      getAllCategories();
+      notificationHelper.success('success', response.data.Message);
+    } catch (error) {
+      console.error('Error updating category:', error);
+    } finally {
+      dialogFormVisible.value = false;
+      isLoading.value = true;
+    }
+  };
+
+  //
+  const resetForm = (formEl: FormInstance | undefined) => {
+    if (!formEl) return;
+    formEl.resetFields();
+  };
   onMounted(() => {
     getAllCategories();
   });
   return {
     onSubmit,
+    onConfirmUpdate,
     ruleFormRef,
     rules,
     dialogFormVisible,
@@ -83,9 +120,11 @@ export default function useCategory() {
     formLabelWidth,
     categoryRequestForm,
     onCreateCategory: createCategory,
-    onConfirm,
+    onOpenEditForm,
     categoryData,
     isLoading,
-    getAllCategories
+    getAllCategories,
+    isEditing,
+    resetForm
   };
 }

@@ -41,6 +41,7 @@
   "select": "ជ្រើស",
   "sub_category": "ប្រភេទរង",
   "sub_category_name": "ឈ្មោះនៃប្រភេទរង",
+  "sub_category_list": "បញ្ជីប្រភេទរង",
 
   "t": "T",
   "title": "ចំណងជើង",
@@ -48,5 +49,6 @@
 
   "u": "U",
   "user_list": "បញ្ជីអ្នកប្រើប្រាស់",
-  "user_management": "ការគ្រប់គ្រង អ្នកប្រើប្រាស់"
+  "user_management": "ការគ្រប់គ្រង អ្នកប្រើប្រាស់",
+  "update_category": "កែប្រែប្រភេទ"
 }
