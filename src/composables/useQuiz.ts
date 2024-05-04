@@ -17,8 +17,8 @@ export default function useCreateQuiz() {
 
   async function getAllQuizzes() {
     const response = await quizApi.getAllQuizzes();
-    quizData.value = response.data.data as IGetQuizResponse[];
-    const data = response.data.data as IGetQuizResponse[];
+    quizData.value = response.data.Data as IGetQuizResponse[];
+    const data = response.data.Data as IGetQuizResponse[];
     store.quizList = data;
     console.log(store.quizList);
   }
