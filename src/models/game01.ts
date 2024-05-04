@@ -1,4 +1,4 @@
-export interface Game01 {
+export interface IGame01 {
   id: number;
   qa: string;
   category?: string;

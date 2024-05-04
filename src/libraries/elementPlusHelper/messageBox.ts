@@ -1,4 +1,4 @@
-import { ElMessage, ElMessageBox } from 'element-plus';
+import { ElMessageBox } from 'element-plus';
 
 const onConfirm = async (func: () => Promise<void>, content: string) => {
   const messageBox = await ElMessageBox.confirm(content, {

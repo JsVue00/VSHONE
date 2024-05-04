@@ -21,7 +21,7 @@ export default function useCreateQuiz() {
     quizData.value = response.data.Data;
     const data = response.data.Data as IGetQuizResponse[];
     store.quizList = data;
-    console.log(data);
+    console.log(store.quizList);
   }
 
   const optionsField = ref<Option[]>([
