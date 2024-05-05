@@ -1,4 +1,3 @@
-import categoryApis from '@/apis/category/categoryApi';
 import type { IGetQuizResponse } from '@/models/quiz';
 import { defineStore } from 'pinia';
 

@@ -1,5 +1,6 @@
 {
   "a": "A",
+  "answer": "Answer",
   "language": "ខ្មែរ",
   "home": "Home",
   "login": "Login",
@@ -14,7 +15,9 @@
   "create_new": "Create New",
   "create_new_category": " Create New Category",
   "create_new_quiz": "Create New Quiz",
+  "correct": "Correct",
   "correct_answer": "Correct Answer",
+  "congratulation": "Congratulation",
 
   "d": "D",
   "delete": "Delete",
@@ -34,6 +37,7 @@
   "question": "Question",
 
   "r": "R",
+  "required": "Required",
   "remark": "Remark",
 
   "s": "S",
@@ -43,11 +47,19 @@
   "sub_category_name": "Sub Category Name",
   "sub_category_list": "Sub Category List",
 
+  "p": "P",
+  "please_select_another_answer": "Please Select Another Answer",
+
   "t": "T",
   "title": "Title",
   "the_maximum_of_answer_is": "The maximum of answer is",
+  "try_your_challenge": "Try your challenge",
   "u": "U",
   "update_category": "Update Category",
   "user_list": "User List",
-  "user_management": "User Management"
+  "user_management": "User Management",
+
+  "v": "V",
+  "w": "W",
+  "wrong": "Wrong"
 }

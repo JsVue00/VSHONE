@@ -4,6 +4,11 @@ import type { ISubCategoryDataResponse, ISubCategoryRequest } from '@/models/sub
 import { ref, onMounted, reactive } from 'vue';
 import notificationHelper from '@/libraries/notificationHelper';
 import formHelper from '@/libraries/elementPlusHelper/formHelper';
+import {
+  normalValidate,
+  verifyIntegerMinMax
+} from '@/libraries/elementPlusHelper/formValidationHelper';
+
 export default function useSubCategory() {
   const dialogTableVisible = ref(false);
   const dialogFormVisible = ref(false);
@@ -21,9 +26,9 @@ export default function useSubCategory() {
   });
 
   const rules = reactive<FormRules<ISubCategoryRequest>>({
-    CategoryId: { required: true, message: 'required' },
-    SubCategoryName: { required: true, message: 'required' },
-    Description: { required: true, message: 'required' }
+    CategoryId: normalValidate,
+    SubCategoryName: normalValidate,
+    Description: normalValidate
   });
 
   const getAllSubCategories = async () => {

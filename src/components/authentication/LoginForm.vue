@@ -1,14 +1,6 @@
 <template>
-  <el-form
-    ref="loginFormRule"
-    style="max-width: 600px"
-    :model="loginRequestForm"
-    :rules="rules"
-    label-position="top"
-    label-width="auto"
-    class="demo-ruleForm"
-    status-icon
-  >
+  <el-form ref="loginFormRule" style="max-width: 600px" :model="loginRequestForm" :rules="rules" label-position="top"
+    label-width="auto" class="demo-ruleForm" status-icon>
     <el-form-item label="Email" prop="email">
       <el-input v-model="loginRequestForm.email" type="email" />
     </el-form-item>

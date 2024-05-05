@@ -10,19 +10,25 @@
               <el-form-item :label="$t('title')" prop="Title">
                 <el-input v-model="requestForm.Title" />
               </el-form-item>
-              <el-form-item :label="$t('question')" prop="name">
+              <el-form-item :label="$t('question')" prop="Question">
                 <el-input v-model="requestForm.Question" />
               </el-form-item>
 
-              <el-form-item :label="$t('sub_category_name')" prop="CategoryId">
+              <el-form-item :label="$t('category_name')" prop="CategoryId">
                 <el-select v-model="requestForm.CategoryId" :placeholder="$t('select')">
                   <el-option v-for="(cat, index) in categoryData" :key="index" :label="cat.CategoryName"
                     :value="cat.CategoryId" />
                 </el-select>
               </el-form-item>
+              <el-form-item :label="$t('sub_category_name')" prop="SubCategoryId">
+                <el-select v-model="requestForm.SubCategoryId" :placeholder="$t('select')">
+                  <el-option v-for="(cat, index) in SubCategory" :key="index" :label="cat.SubCategoryName"
+                    :value="cat.Id" />
+                </el-select>
+              </el-form-item>
             </div>
             <div class="w-full">
-              <el-form-item :label="$t('options')">
+              <el-form-item :label="$t('options')" prop="Options">
                 <div v-for="(option, index) in optionsField" :key="index" class="w-full">
                   <div class="flex w-full gap-2">
                     <span>{{ index + 1 }} </span>
@@ -45,9 +51,6 @@
             </div>
           </div>
 
-          <!-- <el-form-item label="Activity form" prop="desc">
-            <el-input v-model="ruleForm.desc" type="textarea" />
-          </el-form-item> -->
           <div class="flex justify-end w-full">
             <el-form-item>
               <el-button type="primary" @click="onSubmit(ruleFormRef)"> Create </el-button>
@@ -75,6 +78,7 @@ const {
   requestForm,
   ruleFormRef,
   rules,
-  onSubmit
+  onSubmit,
+  SubCategory
 } = useCreateQuiz();
 </script>

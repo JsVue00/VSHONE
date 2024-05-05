@@ -3,7 +3,6 @@
 
     <div class="md:w-[700px]  bg-sky-900 min-h-screen w-full md:py-4" v-for="item in myQuestion" :key="item.QuizId">
       <div class="bg-primary  py-1">
-        <div v-show="isWon" class="congratulation text-center">Congratulation!!!💗💖</div>
 
         <div class="text-[25px] px-4  text-titleFont"> {{ item.Question }}</div>
       </div>
@@ -17,18 +16,21 @@
       </div>
       <div class="text-center">
         <el-button type="success" :disabled="isSelected" size="small"
-          @click="onPlayerSelected(item.CorrectAnswer)">Submit</el-button>
+          @click="onSubmit(item.CorrectAnswer)">Submit</el-button>
         <el-button type="warning" :disabled="disabledRoute" class="text-center" size="small"
-          @click="changeGame()">Next</el-button>
+          @click="onNextGame()">Next</el-button>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
 import useGame01 from '@/composables/usegame01';
+import useQuiz from '@/composables/useQuiz';
+useQuiz();
 
-const { myQuestion, answer, isWon, isSelected, disabledRoute, onPlayerSelected, changeGame } =
+const { myQuestion, answer, isWon, isSelected, disabledRoute, onSubmit, onNextGame } =
   useGame01();
+
 
 </script>
 

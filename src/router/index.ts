@@ -20,15 +20,21 @@ const router = createRouter({
       meta: { Layout: AdminLayout, requiredAuth: true },
       children: [
         {
+          path: '',
+          name: 'dashboard',
+          component: () => import('@/pages/admin/DashboardPage.vue'),
+          meta: { Layout: AdminLayout, requiredAuth: true }
+        },
+        {
           path: 'userList',
           name: 'userList',
-          component: () => import('@/pages/admin/UserListPage.vue'),
+          component: () => import('@/pages/admin/users/UserListPage.vue'),
           meta: { Layout: AdminLayout, requiredAuth: true }
         },
         {
           path: 'questionList',
           name: 'questionList',
-          component: () => import('@/pages/admin/QuizListPage.vue'),
+          component: () => import('@/pages/admin/quizzes/QuizListPage.vue'),
           meta: { Layout: AdminLayout, requiredAuth: true }
         },
         {
@@ -46,7 +52,7 @@ const router = createRouter({
         {
           path: 'create-new-quiz',
           name: 'create-new-quiz',
-          component: () => import('@/pages/admin/CreateNewQuizPage.vue'),
+          component: () => import('@/pages/admin/quizzes/CreateNewQuizPage.vue'),
           meta: { Layout: AdminLayout, requiredAuth: true }
         }
       ]

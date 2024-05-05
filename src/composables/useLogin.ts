@@ -1,5 +1,6 @@
 import { reactive, ref } from 'vue';
 import type { FormInstance, FormRules } from 'element-plus';
+import { passwordValidation } from '@/libraries/elementPlusHelper/formValidationHelper';
 
 export default function useLogin() {
   interface RuleForm {
@@ -27,7 +28,7 @@ export default function useLogin() {
         trigger: ['blur', 'change']
       }
     ],
-    password: [{ required: true, message: 'Required', min: 6, max: 20, trigger: 'blur' }]
+    password: { validator: passwordValidation(6, 20), required: true }
   });
 
   const onUserSubmit = async (formEl: FormInstance | undefined) => {

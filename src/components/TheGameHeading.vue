@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-around w-full h-[60px] items-center bg-background2 text-text1">
-    <router-link to="#">{{ $t('games.game_iq') }}</router-link>
+    <router-link to="#">{{ $t('try_your_challenge') }}</router-link>
     <SwitchLanguageButton />
   </div>
 </template>

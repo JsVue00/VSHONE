@@ -7,11 +7,15 @@ import formHelper from '@/libraries/elementPlusHelper/formHelper';
 import notificationHelper from '@/libraries/notificationHelper';
 import quizApi from '@/apis/quiz/quizApi';
 import { appStore } from '@/stores';
+import { normalValidate } from '@/libraries/elementPlusHelper/formValidationHelper';
+import useSubCategory from './useSubCategory';
+import type { ISubCategoryDataResponse } from '@/models/subCategory';
 
 export default function useCreateQuiz() {
   const formSize = ref<ComponentSize>('default');
   const ruleFormRef = ref<FormInstance>();
   const store = appStore();
+  const { subCategoryData } = useSubCategory();
 
   const quizData = ref<IGetQuizResponse[]>([]);
 
@@ -56,12 +60,12 @@ export default function useCreateQuiz() {
     () => optionsField.value.filter((option: Option) => option.value !== '').length
   );
 
-  const rules = reactive<FormRules<ICreateQuizRequest>>({
-    CategoryId: { required: true },
-    Title: { required: true },
-    Question: { required: true },
-    Options: { required: true },
-    CorrectAnswer: { required: true }
+  const rules = ref<FormRules<ICreateQuizRequest>>({
+    CategoryId: normalValidate,
+    Title: normalValidate,
+    Question: normalValidate,
+    CorrectAnswer: normalValidate,
+    SubCategoryId: normalValidate
   });
 
   const createNewQuiz = async () => {
@@ -89,6 +93,12 @@ export default function useCreateQuiz() {
   };
 
   const onSubmit = formHelper.onSubmitForm(createNewQuiz);
+  // filter sub categories
+  const SubCategory = computed(() => {
+    return subCategoryData.value.filter(
+      (data: ISubCategoryDataResponse) => data.CategoryId === requestForm.CategoryId
+    );
+  });
 
   onMounted(() => {
     getAllQuizzes();
@@ -105,6 +115,7 @@ export default function useCreateQuiz() {
     requestForm,
     ruleFormRef,
     rules,
-    onSubmit
+    onSubmit,
+    SubCategory
   };
 }

@@ -1,5 +1,6 @@
 {
   "a": "A",
+  "answer": "ចម្លើយ",
   "language": "English",
   "home": "ផ្ទះ",
   "login": "ចូល",
@@ -15,6 +16,8 @@
   "create_new_category": "បង្កើតប្រភេទថ្មី",
   "create_new_quiz": "បង្កើតសំណួរថ្មី",
   "correct_answer": "ចម្លើយត្រឺមត្រូវ",
+  "correct": "ត្រឹមត្រូវ",
+  "congratulation": "សូមចូលរួមអបអរ",
 
   "d": "D",
   "delete": "លុប",
@@ -34,6 +37,7 @@
   "question": "សំណួរ",
 
   "r": "R",
+  "required": "ទាមទារ",
   "remark": "ចំណាំ",
 
   "s": "S",
@@ -43,12 +47,20 @@
   "sub_category_name": "ឈ្មោះនៃប្រភេទរង",
   "sub_category_list": "បញ្ជីប្រភេទរង",
 
+  "p": "P",
+  "please_select_another_answer": "សូមជ្រើសរើសចម្លើយដែលត្រឹមត្រូវ",
+
   "t": "T",
   "title": "ចំណងជើង",
   "the_maximum_of_answer_is": "អាចដាក់ចម្លើយច្រើនបំផុតគឺ",
+  "try_your_challenge": "សាកល្បងសម្ថភាពរបស់អ្នក",
 
   "u": "U",
   "user_list": "បញ្ជីអ្នកប្រើប្រាស់",
   "user_management": "ការគ្រប់គ្រង អ្នកប្រើប្រាស់",
-  "update_category": "កែប្រែប្រភេទ"
+  "update_category": "កែប្រែប្រភេទ",
+
+  "v": "V",
+  "w": "W",
+  "wrong": "មិនត្រឹមត្រូវ"
 }

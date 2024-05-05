@@ -1,21 +1,19 @@
 <template>
-  <el-button type="primary" size="small" @click="changeLanguage">{{ $t('language') }}</el-button>
+  <el-dropdown>
+    <el-button size="small">
+      <img class="object-fill w-[24px] h-auto" :src="language?.icon" alt="" /><el-icon
+        class="el-icon--right"><arrow-down /></el-icon>
+    </el-button>
+    <template #dropdown>
+      <el-dropdown-menu v-for="(lang, index) in languages" :key="index">
+        <el-dropdown-item @click="handleClick(lang.name)">
+          <img class="object-fill w-[24px] h-auto mr-1" :src="lang.icon" alt="" />
+          {{ lang.label }}</el-dropdown-item>
+      </el-dropdown-menu>
+    </template>
+  </el-dropdown>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { appStore } from '@/stores';
-
-const isLoading = ref<boolean>(false);
-const store = appStore();
-const changeLanguage = async () => {
-  isLoading.value = true;
-  await new Promise(() =>
-    setTimeout(async () => {
-      store.changeLanguage();
-      window.location.reload();
-    }, 500)
-  );
-  isLoading.value = false;
-};
+import userHeader from '@/composables/useHeader';
+const { handleClick, language, languages } = userHeader();
 </script>
-@/stores

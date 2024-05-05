@@ -4,6 +4,7 @@ import notificationHelper from '@/libraries/notificationHelper';
 import categoryApis from '@/apis/category/categoryApi';
 import type { FormInstance, FormRules } from 'element-plus';
 import formHelper from '@/libraries/elementPlusHelper/formHelper';
+import { normalValidate } from '@/libraries/elementPlusHelper/formValidationHelper';
 
 export default function useCategory() {
   const dialogTableVisible = ref(false);
@@ -21,9 +22,9 @@ export default function useCategory() {
     Description: ''
   });
   const rules = reactive<FormRules<ICategoryRequest>>({
-    CategoryName: { required: true },
-    Image: { required: true },
-    Description: { required: true }
+    CategoryName: normalValidate,
+    Image: normalValidate,
+    Description: normalValidate
   });
 
   async function getAllCategories() {

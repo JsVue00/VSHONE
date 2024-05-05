@@ -2,6 +2,8 @@ import { ref, onMounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import type { IGetQuizResponse } from '@/models/quiz';
 import { appStore } from '@/stores';
+import notificationHelper from '@/libraries/notificationHelper';
+import { t } from '@/libraries/vue-i18n';
 
 export default function useGame01() {
   const route = useRoute();
@@ -13,17 +15,16 @@ export default function useGame01() {
   const isWon = ref<boolean>(false);
   const disabledRoute = ref<boolean>(false);
   const store = appStore();
-  const onPlayerSelected = async (correctAnswer: number) => {
+
+  const onSubmit = async (correctAnswer: number) => {
     if (correctAnswer === answer.value) {
       isWon.value = true;
-      setTimeout(() => {
-        isWon.value = false;
-      }, 3000);
+      notificationHelper.success(`${t('correct')}`, `${t('congratulation')} 💕`);
     } else {
-      alert('Please try again');
+      notificationHelper.warning(`${t('wrong')}`, `${t('please_select_another_answer')}`);
     }
   };
-  const changeGame = () => {
+  const onNextGame = () => {
     pageId.value += 1;
     router.push('/games/' + pageId.value);
     answer.value = null;
@@ -57,7 +58,7 @@ export default function useGame01() {
     isSelected,
     pageId,
     disabledRoute,
-    onPlayerSelected,
-    changeGame
+    onSubmit,
+    onNextGame
   };
 }

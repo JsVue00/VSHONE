@@ -1,6 +1,6 @@
 <template>
    <AuthenticationForm>
-    <LoginForm></LoginForm>
+      <LoginForm></LoginForm>
    </AuthenticationForm>
 
 </template>
