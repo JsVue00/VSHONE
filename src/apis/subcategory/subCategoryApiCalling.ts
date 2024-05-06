@@ -1,8 +1,9 @@
-import type { ISubCategoryRequest } from '@/models/subCategory';
+import type { ISubCategoryDataResponse, ISubCategoryRequest } from '@/models/subCategory';
 import api from '../api';
+import type { IAxiosPromise } from '@/models/axiosPromise';
 
 export default {
-  callGetAllSubCategories() {
+  callGetAllSubCategories(): IAxiosPromise<ISubCategoryDataResponse> {
     return api.get('subcategory');
   },
   callCreateSubCategory(request: ISubCategoryRequest) {

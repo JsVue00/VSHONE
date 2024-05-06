@@ -1,5 +1,6 @@
 import type { ICreateQuizRequest, IGetQuizResponse } from '@/models/quiz';
 import api from '../api';
+
 import type { IAxiosPromise } from '@/models/axiosPromise';
 export default {
   callCreateQuiz(request: ICreateQuizRequest) {

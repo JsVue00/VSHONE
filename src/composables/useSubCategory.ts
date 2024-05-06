@@ -32,8 +32,8 @@ export default function useSubCategory() {
   });
 
   const getAllSubCategories = async () => {
-    const response = await subCategoryApis.getAllCategories();
-    subCategoryData.value = response;
+    const response = await subCategoryApis.getAllSubCategories();
+    subCategoryData.value = response.data.Data as ISubCategoryDataResponse[];
   };
 
   const createSubCategory = async () => {

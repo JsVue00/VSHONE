@@ -1,8 +1,9 @@
-import type { ICategoryRequest } from '@/models/category';
+import type { ICategoryRequest, ICategoryResponse } from '@/models/category';
 import categoryApiCalling from './categoyApiCalling';
+import type { IAxiosPromise } from '@/models/axiosPromise';
 
 const categoryApis = {
-  getAllCategories() {
+  getAllCategories(): IAxiosPromise<ICategoryResponse> {
     return categoryApiCalling.callGetAllCategories();
   },
   createCategory(request: ICategoryRequest) {
@@ -12,7 +13,7 @@ const categoryApis = {
   deleteCategory(Id: number) {
     return categoryApiCalling.callDeleteCategory(Id);
   },
-  getCategoryById(Id: number) {
+  getCategoryById(Id: number): IAxiosPromise<ICategoryResponse> {
     return categoryApiCalling.callGetCategoryById(Id);
   },
   updateCategory(Id: number, request: ICategoryRequest) {

@@ -31,7 +31,7 @@ export default function useCategory() {
     isLoading.value = true;
     try {
       const response = await categoryApis.getAllCategories();
-      categoryData.value = response.data;
+      categoryData.value = response.data.Data as ICategoryResponse[];
     } catch (error: any) {
       notificationHelper.error('error', `${error.message}`);
     } finally {
@@ -49,7 +49,7 @@ export default function useCategory() {
     try {
       const response = await categoryApis.createCategory(request);
       getAllCategories();
-      notificationHelper.success('Success', response.data);
+      notificationHelper.success('Success', response.data.Message);
     } catch (error: any) {
       notificationHelper.error('error', `${error.message}`);
     } finally {
@@ -65,9 +65,9 @@ export default function useCategory() {
   async function getCategoryById(Id: number) {
     try {
       const response = await categoryApis.getCategoryById(Id);
-      const data: ICategoryResponse = response.data;
-      categoryRequestForm.value.CategoryName = data.CategoryName;
-      categoryRequestForm.value.Description = data.Description;
+      const data: ICategoryResponse[] = response.data.Data as ICategoryResponse[];
+      categoryRequestForm.value.CategoryName = data[0].CategoryName;
+      categoryRequestForm.value.Description = data[0].Description;
     } catch (error) {
       console.error('Error fetching category:', error);
     }
@@ -76,6 +76,7 @@ export default function useCategory() {
   const requestId = ref(0);
   const onOpenEditForm = async (Id: number) => {
     requestId.value = Id;
+    console.log(requestId.value);
     dialogFormVisible.value = true;
     isEditing.value = true;
     try {

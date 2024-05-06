@@ -1,11 +1,12 @@
+import type { IAxiosPromise } from '@/models/axiosPromise';
 import quizApiCalling from './quizApiCalling';
-import type { ICreateQuizRequest } from '@/models/quiz';
+import type { ICreateQuizRequest, IGetQuizResponse } from '@/models/quiz';
 
 export default {
   createQuiz(request: ICreateQuizRequest) {
     return quizApiCalling.callCreateQuiz(request);
   },
-  getAllQuizzes() {
+  getAllQuizzes(): IAxiosPromise<IGetQuizResponse> {
     return quizApiCalling.callGetAllQuizzes();
   }
 };
