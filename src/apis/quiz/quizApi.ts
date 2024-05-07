@@ -8,5 +8,11 @@ export default {
   },
   getAllQuizzes(): IAxiosPromise<IGetQuizResponse> {
     return quizApiCalling.callGetAllQuizzes();
+  },
+  getQuizById(Id: number): IAxiosPromise<IGetQuizResponse> {
+    return quizApiCalling.callGetQuizById(Id);
+  },
+  updateQuiz(Id: number, reqest: ICreateQuizRequest) {
+    return quizApiCalling.callUpdateQuiz(Id, reqest);
   }
 };
