@@ -10,21 +10,33 @@ import { appStore } from '@/stores';
 import { normalValidate } from '@/libraries/elementPlusHelper/formValidationHelper';
 import useSubCategory from './useSubCategory';
 import type { ISubCategoryDataResponse } from '@/models/subCategory';
+import useCategory from '@/composables/useCategory';
+import router from '@/router';
+import type { TableProperty } from '@/models/tableProperty';
 
 export default function useCreateQuiz() {
-  const formSize = ref<ComponentSize>('default');
   const ruleFormRef = ref<FormInstance>();
   const store = appStore();
   const { subCategoryData } = useSubCategory();
+  const { categoryData } = useCategory();
 
   const quizData = ref<IGetQuizResponse[]>([]);
+  const isLoading = ref<boolean>;
+
+  const tableProperties: TableProperty = [
+    ['CategoryName', 'category_name'],
+    ['SubCategoryName', 'sub_category_name'],
+    ['Question', 'question'],
+    ['Options', 'options'],
+    ['CreatedAt', 'created_at'],
+    ['CorrectAnswer', 'correct_answer']
+  ];
 
   async function getAllQuizzes() {
     const response = await quizApi.getAllQuizzes();
     quizData.value = response.data.Data as IGetQuizResponse[];
     const data = response.data.Data as IGetQuizResponse[];
     store.quizList = data;
-    console.log(store.quizList);
   }
 
   const optionsField = ref<Option[]>([
@@ -73,9 +85,8 @@ export default function useCreateQuiz() {
       .filter((options) => options.value !== '')
       .map((options) => options.value);
     requestForm.Options = optionsValue;
-    console.log(Object.values(requestForm.Options));
     const request: ICreateQuizRequest = {
-      SubCategoryId: 1,
+      SubCategoryId: requestForm.SubCategoryId,
       CategoryId: requestForm.CategoryId,
       GameName: 'Quiz',
       Title: requestForm.Title,
@@ -85,14 +96,20 @@ export default function useCreateQuiz() {
     };
     try {
       const reponse = await quizApi.createQuiz(request);
-      notificationHelper.success('Success', reponse.data);
+      notificationHelper.success('Success', reponse.data.Message);
+      getAllQuizzes();
     } catch (error: any) {
       notificationHelper.error('Error', `${error.message}`);
       throw error;
     }
   };
+  const onEditButton = async (Id: number) => {
+    router.push({ name: 'update-quiz', params: { id: Id } });
+  };
 
+  const onUpdate = formHelper.onSubmitForm(() => {});
   const onSubmit = formHelper.onSubmitForm(createNewQuiz);
+
   // filter sub categories
   const SubCategory = computed(() => {
     return subCategoryData.value.filter(
@@ -105,17 +122,21 @@ export default function useCreateQuiz() {
   });
 
   return {
+    tableProperties,
     getAllQuizzes,
     quizData,
     optionsField,
     handleAddOption,
     handleDeleteOption,
     allAnswers,
-    formSize,
     requestForm,
     ruleFormRef,
     rules,
     onSubmit,
-    SubCategory
+    SubCategory,
+    categoryData,
+    onEditButton,
+    isLoading,
+    onUpdate
   };
 }

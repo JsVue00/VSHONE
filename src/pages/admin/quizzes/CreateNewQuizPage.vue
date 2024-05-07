@@ -54,7 +54,6 @@
           <div class="flex justify-end w-full">
             <el-form-item>
               <el-button type="primary" @click="onSubmit(ruleFormRef)"> Create </el-button>
-              <!-- <el-button @click="resetForm(ruleFormRef)">Reset</el-button> -->
             </el-form-item>
           </div>
         </el-form>
@@ -67,8 +66,7 @@ import AdminFormHeader from '@/components/admin/FormHeader.vue';
 import MinusIcon from '@/components/icons/MinusIcon.vue';
 import PlusIcon from '@/components/icons/PlusIcon.vue';
 import useCreateQuiz from '@/composables/useQuiz';
-import useCategory from '@/composables/useCategory';
-const { categoryData } = useCategory();
+
 
 const {
   optionsField,
@@ -79,6 +77,7 @@ const {
   ruleFormRef,
   rules,
   onSubmit,
-  SubCategory
+  SubCategory,
+  categoryData
 } = useCreateQuiz();
 </script>

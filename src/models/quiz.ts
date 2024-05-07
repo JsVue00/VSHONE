@@ -14,6 +14,8 @@ export interface IGetQuizResponse {
   QuizId: number;
   CategoryId: number;
   CategoryName: string;
+  SubCategoryId: number;
+  SubCategoryName: string;
   UserId: null;
   GameName: string;
   Title: string;
