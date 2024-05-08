@@ -4,19 +4,16 @@ import type { ISubCategoryDataResponse, ISubCategoryRequest } from '@/models/sub
 import { ref, onMounted, reactive } from 'vue';
 import notificationHelper from '@/libraries/notificationHelper';
 import formHelper from '@/libraries/elementPlusHelper/formHelper';
-import {
-  normalValidate,
-  verifyIntegerMinMax
-} from '@/libraries/elementPlusHelper/formValidationHelper';
+import { normalValidate } from '@/libraries/elementPlusHelper/formValidationHelper';
 
 export default function useSubCategory() {
-  const dialogTableVisible = ref(false);
   const dialogFormVisible = ref(false);
   const formLabelWidth = '140px';
   const isLoading = ref(false);
   const isEditing = ref(false);
   const ruleFormRef = ref<FormInstance>();
   const subCategoryData = ref<ISubCategoryDataResponse[]>([]);
+  const subCategoryId = ref<number>(0);
 
   const subCategoryRequestForm = reactive<ISubCategoryRequest>({
     CategoryId: null,
@@ -27,8 +24,7 @@ export default function useSubCategory() {
 
   const rules = reactive<FormRules<ISubCategoryRequest>>({
     CategoryId: normalValidate,
-    SubCategoryName: normalValidate,
-    Description: normalValidate
+    SubCategoryName: normalValidate
   });
 
   const getAllSubCategories = async () => {
@@ -37,11 +33,11 @@ export default function useSubCategory() {
   };
 
   const createSubCategory = async () => {
-    isLoading.value = true;
     try {
+      isLoading.value = true;
       const response = await subCategoryApis.createNewSubCategory(subCategoryRequestForm);
       await getAllSubCategories();
-      notificationHelper.success('succcess', response.Message);
+      notificationHelper.success('succcess', response.data.Message);
     } catch (error: any) {
       throw new Error(`${error.message}`);
     } finally {
@@ -49,8 +45,34 @@ export default function useSubCategory() {
       dialogFormVisible.value = false;
     }
   };
+  const onClickEdit = (Id: number) => {
+    subCategoryId.value = Id;
+    isEditing.value = true;
+    const data = subCategoryData.value.find((data: ISubCategoryDataResponse) => data.Id === Id);
+    if (data) {
+      subCategoryRequestForm.SubCategoryName = data.SubCategoryName;
+      subCategoryRequestForm.CategoryId = data.CategoryId;
+      subCategoryRequestForm.Description = data.Description;
+    }
+    dialogFormVisible.value = true;
+  };
+  const onConfirmEdit = formHelper.onSubmitForm(async () => {
+    try {
+      const response = await subCategoryApis.updateSubCategory(
+        subCategoryId.value,
+        subCategoryRequestForm
+      );
+      notificationHelper.success('', response.data.Message);
+      getAllSubCategories();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dialogFormVisible.value = false;
+      isLoading.value = false;
+    }
+  });
+
   const onSubmit = formHelper.onSubmitForm(createSubCategory);
-  const onConfirmUpdate = () => {};
 
   onMounted(() => {
     getAllSubCategories();
@@ -59,7 +81,6 @@ export default function useSubCategory() {
   return {
     subCategoryData,
     dialogFormVisible,
-    dialogTableVisible,
     formLabelWidth,
     isEditing,
     isLoading,
@@ -67,6 +88,7 @@ export default function useSubCategory() {
     subCategoryRequestForm,
     rules,
     onSubmit,
-    onConfirmUpdate
+    onConfirmEdit,
+    onClickEdit
   };
 }

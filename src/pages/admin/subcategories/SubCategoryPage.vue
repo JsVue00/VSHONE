@@ -3,7 +3,7 @@
         <AdminFormHeader :title="$t('category_list')">
             <el-button type="primary" @click="dialogFormVisible = true">{{ $t('create_new') }}</el-button>
         </AdminFormHeader>
-        <SubCategoryTable :data="subCategoryData" :is-loading="isLoading" />
+        <SubCategoryTable :data="subCategoryData" :is-loading="isLoading" :on-update="onClickEdit" />
     </div>
     <!-- Dialogin -->
     <el-dialog v-model="dialogFormVisible" :title="isEditing ? $t('update_category') : $t('create_new_category')"
@@ -26,7 +26,7 @@
         <template #footer>
             <div class="dialog-footer">
                 <el-button type="primary" :loading="isLoading"
-                    @click="isEditing ? onConfirmUpdate() : onSubmit(ruleFormRef)">
+                    @click="isEditing ? onConfirmEdit(ruleFormRef) : onSubmit(ruleFormRef)">
                     {{ isEditing ? $t('update') : $t('save') }}
                 </el-button>
             </div>
@@ -44,10 +44,11 @@ const { categoryData } = useCategory();
 const { subCategoryData,
     dialogFormVisible,
     subCategoryRequestForm,
-    onConfirmUpdate,
+    onConfirmEdit,
     isEditing,
     isLoading,
     rules,
     onSubmit,
+    onClickEdit,
     ruleFormRef } = useSubCategory();
 </script>
