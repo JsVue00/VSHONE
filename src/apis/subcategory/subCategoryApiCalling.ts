@@ -8,5 +8,8 @@ export default {
   },
   callCreateSubCategory(request: ISubCategoryRequest) {
     return api.post('subcategory', request);
+  },
+  callUpdateSubCategory(Id: number, request: ISubCategoryRequest) {
+    return api.put('subcategory/' + Id, request);
   }
 };
