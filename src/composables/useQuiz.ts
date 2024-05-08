@@ -80,15 +80,18 @@ export default function useCreateQuiz() {
     SubCategoryId: normalValidate
   });
 
-  const createNewQuiz = async () => {
-    const optionsValue = optionsField.value
+  const optionsValue = computed(() => {
+    return optionsField.value
       .filter((options) => options.value !== '')
       .map((options) => options.value);
-    requestForm.Options = optionsValue;
+  });
+
+  const createNewQuiz = async () => {
+    requestForm.Options = optionsValue.value;
     const request: ICreateQuizRequest = {
       SubCategoryId: requestForm.SubCategoryId,
       CategoryId: requestForm.CategoryId,
-      GameName: 'Quiz',
+      GameName: '',
       Title: requestForm.Title,
       Question: requestForm.Question,
       Options: `${JSON.stringify(requestForm.Options)}`,
@@ -122,6 +125,7 @@ export default function useCreateQuiz() {
   });
 
   return {
+    optionsValue,
     tableProperties,
     getAllQuizzes,
     quizData,

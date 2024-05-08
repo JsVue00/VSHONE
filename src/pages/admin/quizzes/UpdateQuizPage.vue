@@ -85,6 +85,7 @@ const {
     rules,
     SubCategory,
     categoryData,
+    optionsValue,
 } = useCreateQuiz();
 
 
@@ -106,11 +107,7 @@ async function getAllQuizzes() {
 
 }
 const quizUpdate = async () => {
-    const optionsValue = optionsField.value
-        .filter((options) => options.value !== '')
-        .map((options) => options.value);
-    requestForm.Options = optionsValue;
-    console.log(Object.values(requestForm.Options));
+    requestForm.Options = optionsValue.value;
     const request: ICreateQuizRequest = {
         SubCategoryId: requestForm.SubCategoryId,
         CategoryId: requestForm.CategoryId,
@@ -121,9 +118,9 @@ const quizUpdate = async () => {
         CorrectAnswer: requestForm.CorrectAnswer
     };
     try {
-      const reponse =  await quizApi.updateQuiz(quizId, request);
-        notificationHelper.success('Succes',reponse.data.Message);
-        router.push({name: 'questionList'})
+        const reponse = await quizApi.updateQuiz(quizId, request);
+        notificationHelper.success('Succes', reponse.data.Message);
+        router.push({ name: 'questionList' })
     } catch (error) {
         console.log(error);
     }

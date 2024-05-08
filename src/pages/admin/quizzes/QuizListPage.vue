@@ -3,7 +3,7 @@
     <AdminFormHeader :title="$t('quiz_list')">
       <el-button type="primary" @click="$router.push({ name: 'create-new-quiz' })">{{
         $t('create_new')
-        }}</el-button>
+      }}</el-button>
     </AdminFormHeader>
     <QuizDataTable :data="quizData" :onUpdate="onEditButton" :tableProperties="tableProperties" />
 
