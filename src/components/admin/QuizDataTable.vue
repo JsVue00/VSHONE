@@ -2,7 +2,7 @@
   <div>
     <el-table :data="data" border header-cell-class-name="my-table-header" style="width: 100%">
       <el-table-column v-for="(pro, index) in tableProperties" :key="index" :prop="pro[0]" :label="$t(pro[1])"
-        :width="pro[0] === 'Options' ? '300' : pro[0] === 'CreatedAt' ? '200' : ''" align="center">
+        :width="pro[0] === 'Options' ? '300' : pro[0] === 'CreatedAt' ? '200' : ''" align="start">
         <template #default="{ row }">
           <div v-if="pro[0] === 'Options'">
             <ul>

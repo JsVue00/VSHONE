@@ -8,6 +8,7 @@ export interface ISubCategoryDataResponse {
   Id: number;
   CategoryId: number | null;
   SubCategoryName: string;
+  TotalQuizzes: number;
   Image: null | string;
   Description: string;
 }

@@ -1,5 +1,6 @@
 {
   "a": "A",
+  "all_quiz_categories": "ប្រភេទនៃសំណួរ",
   "actions": "សកម្មភាព",
   "answer": "ចម្លើយ",
   "language": "English",
@@ -37,6 +38,7 @@
   "quizzes": "កម្រងសំណួរ",
   "quiz_list": "បញ្ជីសំណួរ",
   "question": "សំណួរ",
+  "questions": "សំណួរ",
 
   "r": "R",
   "required": "ទាមទារ",

@@ -1,12 +1,10 @@
 import { computed, reactive, ref, onMounted } from 'vue';
 import type { ComponentSize, FormInstance, FormRules } from 'element-plus';
-import { ElNotification } from 'element-plus';
 import { t } from '@/libraries/vue-i18n';
 import type { ICreateQuizRequest, IGetQuizResponse, Option } from '@/models/quiz';
 import formHelper from '@/libraries/elementPlusHelper/formHelper';
 import notificationHelper from '@/libraries/notificationHelper';
 import quizApi from '@/apis/quiz/quizApi';
-import { appStore } from '@/stores';
 import { normalValidate } from '@/libraries/elementPlusHelper/formValidationHelper';
 import useSubCategory from './useSubCategory';
 import type { ISubCategoryDataResponse } from '@/models/subCategory';
@@ -16,7 +14,6 @@ import type { TableProperty } from '@/models/tableProperty';
 
 export default function useCreateQuiz() {
   const ruleFormRef = ref<FormInstance>();
-  const store = appStore();
   const { subCategoryData } = useSubCategory();
   const { categoryData } = useCategory();
 
@@ -35,8 +32,6 @@ export default function useCreateQuiz() {
   async function getAllQuizzes() {
     const response = await quizApi.getAllQuizzes();
     quizData.value = response.data.Data as IGetQuizResponse[];
-    const data = response.data.Data as IGetQuizResponse[];
-    store.quizList = data;
   }
 
   const optionsField = ref<Option[]>([
@@ -57,10 +52,7 @@ export default function useCreateQuiz() {
     if (optionsField.value.length < 6) {
       optionsField.value.push({ model: '', value: '' });
     } else {
-      return ElNotification({
-        message: `${t('the_maximum_of_answer_is')} ` + 6,
-        type: 'warning'
-      });
+      return notificationHelper.warning('', `${t('the_maximum_of_answer_is')} ` + 6);
     }
   };
   const handleDeleteOption = (index: number) => {

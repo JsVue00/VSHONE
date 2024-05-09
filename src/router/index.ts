@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import LoginLayout from '@/layouts/LoginLayout.vue';
 import DefaultLayout from '@/layouts/DefaultLayout.vue';
-import GameLayout from '@/layouts/GameLayout.vue';
-import gameRoutes from './game';
+import GameLayout from '@/layouts/PlayQuizLayout.vue';
+import gameRoutes from './quiz';
 import AdminLayout from '@/layouts/AdminLayout.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

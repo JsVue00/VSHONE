@@ -6,9 +6,8 @@
         class="absolute right-10 top-10 border border-white rounded-md px-4 py-1 bg-[#0a0c43] text-white font-bold hover:bg-[#034596] text-center">
         L O G I N
       </button>
-      <h1 class="text-[80px] absolute top-[100px] left-[50px] text-white">Welcome</h1>
-      <!-- <button @click="$router.push('/login')">Next</button> -->
-      <img class="absolute right-[200px] w-[300px] bottom-2"
+      <h1 class="md:text-[80px] text-[40px] absolute top-[100px] left-[50px] text-white">Welcome</h1>
+      <img class="absolute right-[40%] md:right-[200px] md:w-[300px] w-[100px] md:bottom-2 bottom-[100px]"
         src="https://cdn-icons-png.flaticon.com/128/9042/9042238.png" alt="" />
     </div>
     <section class="section2 min-h-screen relative">
@@ -73,6 +72,12 @@ useQuiz();
   100% {
     width: 250px;
     transform: translateY(0);
+  }
+}
+
+@media screen and(max-width: 700px) {
+  .section2 {
+    background-image: url("https://i.quotev.com/lsn4lr5y43yq.jpg");
   }
 }
 </style>

@@ -28,8 +28,12 @@ export default function useSubCategory() {
   });
 
   const getAllSubCategories = async () => {
-    const response = await subCategoryApis.getAllSubCategories();
-    subCategoryData.value = response.data.Data as ISubCategoryDataResponse[];
+    try {
+      const response = await subCategoryApis.getAllSubCategories();
+      subCategoryData.value = response.data.Data as ISubCategoryDataResponse[];
+    } catch (error: any) {
+      notificationHelper.error('', `${error.message}`);
+    }
   };
 
   const createSubCategory = async () => {

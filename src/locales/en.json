@@ -1,5 +1,6 @@
 {
   "a": "A",
+  "all_quiz_categories": "All Quiz Categories",
   "answer": "Answer",
   "language": "ខ្មែរ",
   "home": "Home",
@@ -36,6 +37,7 @@
   "quizzes": "Quizzes",
   "quiz_list": "Quiz List",
   "question": "Question",
+  "questions": "Questions",
 
   "r": "R",
   "required": "Required",
