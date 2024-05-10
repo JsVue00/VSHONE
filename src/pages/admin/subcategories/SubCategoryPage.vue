@@ -1,6 +1,6 @@
 <template>
     <div class="overflow-auto">
-        <AdminFormHeader :title="$t('category_list')">
+        <AdminFormHeader :title="$t('sub_category_list')">
             <el-button type="primary" @click="dialogFormVisible = true">{{ $t('create_new') }}</el-button>
         </AdminFormHeader>
         <SubCategoryTable :data="subCategoryData" :is-loading="isLoading" :on-update="onClickEdit" />
