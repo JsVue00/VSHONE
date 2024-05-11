@@ -1,12 +1,13 @@
 <template>
     <div class="overflow-auto">
         <AdminFormHeader :title="$t('sub_category_list')">
-            <el-button type="primary" @click="dialogFormVisible = true">{{ $t('create_new') }}</el-button>
+            <el-button type="primary" @click="dialogFormVisible = true, isEditing = false">{{ $t('create_new')
+                }}</el-button>
         </AdminFormHeader>
         <SubCategoryTable :data="subCategoryData" :is-loading="isLoading" :on-update="onClickEdit" />
     </div>
     <!-- Dialogin -->
-    <el-dialog v-model="dialogFormVisible" :title="isEditing ? $t('update_category') : $t('create_new_category')"
+    <el-dialog v-model="dialogFormVisible" :title="isEditing ? $t('update_sub_category') : $t('create_new_category')"
         width="500">
         <el-form :model="subCategoryRequestForm" label-width="180" :rules="rules" ref="ruleFormRef">
             <el-form-item :label="$t('sub_category_name')" prop="SubCategoryName">

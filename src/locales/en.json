@@ -10,6 +10,7 @@
   "c": "C",
   "cacel": "Cancel",
   "category": "Category",
+  "category_id": "Category Id",
   "category_name": "Category Name",
   "category_list": "Category List",
   "create": "Create",
@@ -29,6 +30,9 @@
 
   "g": "G",
   "game_name": "Game Name",
+
+  "i": "I",
+  "image": "Image",
 
   "o": "O",
   "options": "Options",
@@ -61,6 +65,7 @@
   "update": "Update",
   "update_quiz": "Update quiz",
   "update_category": "Update Category",
+  "update_sub_category": "Update Sub Category",
   "user_list": "User List",
   "user_management": "User Management",
 

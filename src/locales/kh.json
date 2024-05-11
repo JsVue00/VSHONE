@@ -11,6 +11,7 @@
   "c": "C",
   "cacel": "បោះបង់",
   "category": "ប្រភេទ",
+  "category_id": "ប្រភេទ​ Id",
   "category_name": "ឈ្មោះប្រភេទ",
   "category_list": "បញ្ជីប្រភេទ",
   "create": "បង្កើត",
@@ -24,12 +25,16 @@
 
   "d": "D",
   "delete": "លុប",
+  "description": "ពិពណ៍នា",
   "e": "E",
 
   "f": "F",
 
   "g": "G",
   "game_name": "ឈ្មោះល្បែង",
+
+  "i": "I",
+  "image": "រូបភាព",
 
   "o": "O",
   "options": "ជម្រើស",
