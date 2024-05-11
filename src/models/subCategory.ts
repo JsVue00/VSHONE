@@ -6,9 +6,12 @@ export interface ISubCategoryRequest {
 }
 export interface ISubCategoryDataResponse {
   Id: number;
-  CategoryId: number | null;
+  CategoryId: number;
+  CategoryName: string;
   SubCategoryName: string;
+  Image: string | null;
   TotalQuizzes: number;
-  Image: null | string;
   Description: string;
+  CreatedAt: string;
+  ModifiedAt: string | null;
 }

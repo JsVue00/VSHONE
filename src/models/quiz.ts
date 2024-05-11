@@ -1,7 +1,6 @@
 export interface ICreateQuizRequest {
   SubCategoryId: number | null;
   CategoryId?: number | null;
-  UserId?: number | string;
   Title: string;
   GameName: string;
   Question: string;
@@ -16,14 +15,16 @@ export interface IGetQuizResponse {
   CategoryName: string;
   SubCategoryId: number;
   SubCategoryName: string;
-  UserId: null;
   GameName: string;
   Title: string;
   Question: string;
-  Image: null;
+  Image: string | null;
   Options: string;
   CorrectAnswer: number;
-  Answered: boolean;
+  CreatedBy: string | null;
+  ModifiedBy: string | null;
+  CreatedAt: string;
+  UpdatedAt: string;
 }
 
 export interface Option {

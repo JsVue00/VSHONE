@@ -9,4 +9,6 @@ export interface ICategoryResponse {
   CategoryName: string;
   Image: string;
   Description: string;
+  CreatedAt: string;
+  ModifiedAt: string;
 }
