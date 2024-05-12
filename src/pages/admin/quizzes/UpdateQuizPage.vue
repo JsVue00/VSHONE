@@ -15,7 +15,8 @@
                             </el-form-item>
 
                             <el-form-item :label="$t('category_name')" prop="CategoryId">
-                                <el-select v-model="requestForm.CategoryId" :placeholder="$t('select')">
+                                <el-select v-model="requestForm.CategoryId" :placeholder="$t('select')"
+                                    @change="onChangeCategory">
                                     <el-option v-for="(cat, index) in categoryData" :key="index"
                                         :label="cat.CategoryName" :value="cat.CategoryId" />
                                 </el-select>
@@ -67,7 +68,7 @@ import quizApi from '@/apis/quiz/quizApi';
 import AdminFormHeader from '@/components/admin/FormHeader.vue';
 import MinusIcon from '@/components/icons/MinusIcon.vue';
 import PlusIcon from '@/components/icons/PlusIcon.vue';
-import useCreateQuiz from '@/composables/useQuiz';
+import useQuiz from '@/composables/useQuiz';
 import formHelper from '@/libraries/elementPlusHelper/formHelper';
 import notificationHelper from '@/libraries/notificationHelper';
 import type { ICreateQuizRequest, IGetQuizResponse } from '@/models/quiz';
@@ -86,7 +87,9 @@ const {
     SubCategory,
     categoryData,
     optionsValue,
-} = useCreateQuiz();
+    onChangeCategory
+
+} = useQuiz();
 
 
 let data = ref<IGetQuizResponse[]>([]);

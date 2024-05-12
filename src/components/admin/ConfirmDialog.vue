@@ -1,6 +1,7 @@
 <template>
     <el-dialog :model-value="isDialogVisible" :title="title" width="500" @close="$emit('close')">
-        <span>{{ content }}</span>
+        <div>{{ content }}</div>
+        <slot />
         <template #footer>
             <div class="dialog-footer">
                 <el-button type="primary" :loading="isLoading" @click="confirm">

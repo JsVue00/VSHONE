@@ -23,14 +23,14 @@ import useSubCategory from '@/composables/useSubCategory';
 import useQuiz from '@/composables/useQuiz';
 import useStartQuiz from '@/composables/useStartQuiz';
 
-
+const { getAllQuizzes } = useQuiz();
 const { onStartQuiz } = useStartQuiz();
-useQuiz();
 const { subCategoryData } = useSubCategory();
 
 const router = useRouter();
 onMounted(() => {
   router.push('/games');
+  getAllQuizzes();
 });
 </script>
 <style scoped>

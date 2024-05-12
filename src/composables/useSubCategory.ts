@@ -14,6 +14,7 @@ export default function useSubCategory() {
   const ruleFormRef = ref<FormInstance>();
   const subCategoryData = ref<ISubCategoryDataResponse[]>([]);
   const subCategoryId = ref<number>(0);
+  const confirmDialogVisible = ref<boolean>(false);
 
   const subCategoryRequestForm = reactive<ISubCategoryRequest>({
     CategoryId: null,
@@ -76,6 +77,22 @@ export default function useSubCategory() {
     }
   });
 
+  const confirmDialog = (Id: number) => {
+    subCategoryId.value = Id;
+    confirmDialogVisible.value = true;
+  };
+  const deleteSubCategory = async () => {
+    try {
+      await subCategoryApis.deleteSubCategory(subCategoryId.value);
+      getAllSubCategories();
+      notificationHelper.success('', 'deleted_successfully');
+    } catch (error: any) {
+      console.log(error.message);
+    } finally {
+      confirmDialogVisible.value = false;
+    }
+  };
+
   const onSubmit = formHelper.onSubmitForm(createSubCategory);
 
   onMounted(() => {
@@ -93,6 +110,9 @@ export default function useSubCategory() {
     rules,
     onSubmit,
     onConfirmEdit,
-    onClickEdit
+    onClickEdit,
+    confirmDialog,
+    confirmDialogVisible,
+    deleteSubCategory
   };
 }

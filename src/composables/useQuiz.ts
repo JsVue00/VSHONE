@@ -1,5 +1,5 @@
-import { computed, reactive, ref, onMounted } from 'vue';
-import type { ComponentSize, FormInstance, FormRules } from 'element-plus';
+import { computed, reactive, ref } from 'vue';
+import type { FormInstance, FormRules } from 'element-plus';
 import { t } from '@/libraries/vue-i18n';
 import type { ICreateQuizRequest, IGetQuizResponse, Option } from '@/models/quiz';
 import formHelper from '@/libraries/elementPlusHelper/formHelper';
@@ -11,14 +11,17 @@ import type { ISubCategoryDataResponse } from '@/models/subCategory';
 import useCategory from '@/composables/useCategory';
 import router from '@/router';
 import type { TableProperty } from '@/models/tableProperty';
+import { appStore } from '@/stores';
 
-export default function useCreateQuiz() {
+export default function useQuiz() {
   const ruleFormRef = ref<FormInstance>();
   const { subCategoryData } = useSubCategory();
   const { categoryData } = useCategory();
+  const dialogVisible = ref<boolean>(false);
 
   const quizData = ref<IGetQuizResponse[]>([]);
-  const isLoading = ref<boolean>;
+  const isLoading = ref<boolean>();
+  const store = appStore();
 
   const tableProperties: TableProperty = [
     ['CategoryName', 'category_name'],
@@ -32,12 +35,16 @@ export default function useCreateQuiz() {
   async function getAllQuizzes() {
     const response = await quizApi.getAllQuizzes();
     quizData.value = response.data.Data as IGetQuizResponse[];
+    const data = response.data.Data as IGetQuizResponse[];
+    store.quizList = data;
   }
 
   const optionsField = ref<Option[]>([
     { model: 'answer1', value: '' },
     { model: 'answer2', value: '' }
   ]);
+
+  const quizId = ref<number>(0);
   const requestForm = reactive<ICreateQuizRequest>({
     SubCategoryId: null,
     CategoryId: null,
@@ -92,7 +99,7 @@ export default function useCreateQuiz() {
     try {
       const reponse = await quizApi.createQuiz(request);
       notificationHelper.success('Success', reponse.data.Message);
-      getAllQuizzes();
+      router.push({ name: 'questionList' });
     } catch (error: any) {
       notificationHelper.error('Error', `${error.message}`);
       throw error;
@@ -102,18 +109,35 @@ export default function useCreateQuiz() {
     router.push({ name: 'update-quiz', params: { id: Id } });
   };
 
-  const onUpdate = formHelper.onSubmitForm(() => {});
   const onSubmit = formHelper.onSubmitForm(createNewQuiz);
 
+  const openDialog = (Id: number) => {
+    quizId.value = Id;
+    dialogVisible.value = true;
+  };
+
+  const onConfirmDelete = async () => {
+    try {
+      isLoading.value = true;
+      const reponse = await quizApi.deleteQuiz(quizId.value);
+      notificationHelper.success('', reponse.data.Message);
+      getAllQuizzes();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      dialogVisible.value = false;
+      isLoading.value = false;
+    }
+  };
+
   // filter sub categories
+  const onChangeCategory = () => {
+    requestForm.SubCategoryId = null;
+  };
   const SubCategory = computed(() => {
     return subCategoryData.value.filter(
       (data: ISubCategoryDataResponse) => data.CategoryId === requestForm.CategoryId
     );
-  });
-
-  onMounted(() => {
-    getAllQuizzes();
   });
 
   return {
@@ -133,6 +157,9 @@ export default function useCreateQuiz() {
     categoryData,
     onEditButton,
     isLoading,
-    onUpdate
+    dialogVisible,
+    onChangeCategory,
+    openDialog,
+    onConfirmDelete
   };
 }

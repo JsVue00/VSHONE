@@ -4,11 +4,11 @@ import type { IGetQuizResponse } from '@/models/quiz';
 import { appStore } from '@/stores';
 import notificationHelper from '@/libraries/notificationHelper';
 import { t } from '@/libraries/vue-i18n';
-import useQuiz from '@/composables/useQuiz';
 
 export default function useStartQuiz() {
   const route = useRoute();
   const router = useRouter();
+  const store = appStore();
   const answer = ref<number | null>();
   const isSelected = ref<boolean>(true);
   const myQuestion = ref<IGetQuizResponse[]>([]);
@@ -16,8 +16,6 @@ export default function useStartQuiz() {
   const quizTypes = ref<IGetQuizResponse>();
   const isWon = ref<boolean>(false);
   const disabledRoute = ref<boolean>(false);
-  const store = appStore();
-  const { quizData } = useQuiz();
   const quizList = store.quizList;
 
   const onSubmit = async (correctAnswer: number) => {
@@ -39,7 +37,7 @@ export default function useStartQuiz() {
   };
 
   const onStartQuiz = (type: string, SubCatId: number) => {
-    store.quizList = quizData.value.filter(
+    store.quizList = store.quizList.filter(
       (data: IGetQuizResponse) => data.SubCategoryId === SubCatId
     );
     if (!store.quizList.length) {

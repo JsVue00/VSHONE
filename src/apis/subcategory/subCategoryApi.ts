@@ -12,6 +12,9 @@ const subCategoryApis = {
   },
   async updateSubCategory(Id: number, request: ISubCategoryRequest): IAxiosPromise<any> {
     return await subCategoryApiCalling.callUpdateSubCategory(Id, request);
+  },
+  async deleteSubCategory(Id: number) {
+    return await subCategoryApiCalling.callDeleteSubCategory(Id);
   }
 };
 

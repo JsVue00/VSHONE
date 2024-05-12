@@ -65,7 +65,7 @@
 import AdminFormHeader from '@/components/admin/FormHeader.vue';
 import MinusIcon from '@/components/icons/MinusIcon.vue';
 import PlusIcon from '@/components/icons/PlusIcon.vue';
-import useCreateQuiz from '@/composables/useQuiz';
+import useQuiz from '@/composables/useQuiz';
 
 
 const {
@@ -78,6 +78,6 @@ const {
   rules,
   onSubmit,
   SubCategory,
-  categoryData
-} = useCreateQuiz();
+  categoryData,
+} = useQuiz();
 </script>

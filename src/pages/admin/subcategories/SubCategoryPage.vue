@@ -4,7 +4,8 @@
             <el-button type="primary" @click="dialogFormVisible = true, isEditing = false">{{ $t('create_new')
                 }}</el-button>
         </AdminFormHeader>
-        <SubCategoryTable :data="subCategoryData" :is-loading="isLoading" :on-update="onClickEdit" />
+        <SubCategoryTable :data="subCategoryData" :is-loading="isLoading" :on-update="onClickEdit"
+            :on-delete="confirmDialog" />
     </div>
     <!-- Dialogin -->
     <el-dialog v-model="dialogFormVisible" :title="isEditing ? $t('update_sub_category') : $t('create_new_category')"
@@ -33,13 +34,19 @@
             </div>
         </template>
     </el-dialog>
-
+    <ConfirmDialog :isDialogVisible="confirmDialogVisible" @close="confirmDialogVisible = false" :title="$t('delete')"
+        :content="$t('do_you_want_to_delete_this_data_?')" :confirm="deleteSubCategory">
+        <br>
+        <div>{{ $t('Will delete all quizzes that have this subcategory.') }}</div>
+    </ConfirmDialog>
 </template>
 <script lang="ts" setup>
 import SubCategoryTable from '@/components/admin/SubCategoryTable.vue';
 import AdminFormHeader from '@/components/admin/FormHeader.vue';
 import useSubCategory from '@/composables/useSubCategory';
 import useCategory from '@/composables/useCategory';
+import ConfirmDialog from '@/components/admin/ConfirmDialog.vue';
+
 const { categoryData } = useCategory();
 
 const { subCategoryData,
@@ -50,6 +57,7 @@ const { subCategoryData,
     isLoading,
     rules,
     onSubmit,
+    confirmDialog,
     onClickEdit,
-    ruleFormRef } = useSubCategory();
+    ruleFormRef, confirmDialogVisible, deleteSubCategory } = useSubCategory();
 </script>

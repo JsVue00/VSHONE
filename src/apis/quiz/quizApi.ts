@@ -14,5 +14,8 @@ export default {
   },
   updateQuiz(Id: number, reqest: ICreateQuizRequest) {
     return quizApiCalling.callUpdateQuiz(Id, reqest);
+  },
+  deleteQuiz(Id: number) {
+    return quizApiCalling.callDeleteQuiz(Id);
   }
 };

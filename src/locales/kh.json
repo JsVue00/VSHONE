@@ -21,11 +21,13 @@
   "create_new_quiz": "បង្កើតសំណួរថ្មី",
   "correct_answer": "ចម្លើយត្រឺមត្រូវ",
   "correct": "ត្រឹមត្រូវ",
+  "confirm": "លុប",
   "congratulation": "សូមចូលរួមអបអរ",
 
   "d": "D",
   "delete": "លុប",
   "description": "ពិពណ៍នា",
+  "do_you_want_to_delete_this_data_?": "តើអ្នកចង់លុបទិន្នន័យមួយនេះមែនទេ?",
   "e": "E",
 
   "f": "F",

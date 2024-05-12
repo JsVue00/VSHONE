@@ -14,5 +14,8 @@ export default {
   },
   callUpdateQuiz(Id: number, request: ICreateQuizRequest): IAxiosPromise<IGetQuizResponse> {
     return api.put('Quiz/' + Id, request);
+  },
+  callDeleteQuiz(Id: number) {
+    return api.delete('Quiz/' + Id);
   }
 };
