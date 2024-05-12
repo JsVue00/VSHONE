@@ -17,21 +17,11 @@
   </div>
 </template>
 <script setup lang="ts">
-import { useRouter } from 'vue-router';
-import { onMounted } from 'vue';
 import useSubCategory from '@/composables/useSubCategory';
-import useQuiz from '@/composables/useQuiz';
 import useStartQuiz from '@/composables/useStartQuiz';
 
-const { getAllQuizzes } = useQuiz();
 const { onStartQuiz } = useStartQuiz();
 const { subCategoryData } = useSubCategory();
-
-const router = useRouter();
-onMounted(() => {
-  router.push('/games');
-  getAllQuizzes();
-});
 </script>
 <style scoped>
 .form-item {

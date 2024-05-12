@@ -4,6 +4,7 @@ import type { IGetQuizResponse } from '@/models/quiz';
 import { appStore } from '@/stores';
 import notificationHelper from '@/libraries/notificationHelper';
 import { t } from '@/libraries/vue-i18n';
+import useQuiz from './useQuiz';
 
 export default function useStartQuiz() {
   const route = useRoute();
@@ -17,6 +18,7 @@ export default function useStartQuiz() {
   const isWon = ref<boolean>(false);
   const disabledRoute = ref<boolean>(false);
   const quizList = store.quizList;
+  const { quizData, getAllQuizzes } = useQuiz();
 
   const onSubmit = async (correctAnswer: number) => {
     if (correctAnswer === answer.value) {
@@ -37,7 +39,7 @@ export default function useStartQuiz() {
   };
 
   const onStartQuiz = (type: string, SubCatId: number) => {
-    store.quizList = store.quizList.filter(
+    store.quizList = quizData.value.filter(
       (data: IGetQuizResponse) => data.SubCategoryId === SubCatId
     );
     if (!store.quizList.length) {
@@ -53,6 +55,7 @@ export default function useStartQuiz() {
       (item: IGetQuizResponse, index) => index === Number(pageId.value - 1)
     );
     pageId.value < quizList.length ? (disabledRoute.value = false) : (disabledRoute.value = true);
+    getAllQuizzes();
   });
 
   watch(
