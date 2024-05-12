@@ -38,7 +38,8 @@ export default function useStartQuiz() {
     answer.value = null;
   };
 
-  const onStartQuiz = (type: string, SubCatId: number) => {
+  const onStartQuiz = async (type: string, SubCatId: number) => {
+    await getAllQuizzes();
     store.quizList = quizData.value.filter(
       (data: IGetQuizResponse) => data.SubCategoryId === SubCatId
     );
@@ -55,7 +56,6 @@ export default function useStartQuiz() {
       (item: IGetQuizResponse, index) => index === Number(pageId.value - 1)
     );
     pageId.value < quizList.length ? (disabledRoute.value = false) : (disabledRoute.value = true);
-    getAllQuizzes();
   });
 
   watch(
