@@ -43,7 +43,6 @@ const navPages = [
     menu: 'user_management',
     subMenu: [
       { index: '1-1', subMenuName: 'user_list', pathName: 'userList', link: 'userList' },
-      { index: '1-2', subMenuName: 'user_list', pathName: 'userList', link: '/#' }
     ]
   },
   {
@@ -70,6 +69,19 @@ const navPages = [
         pathName: 'questionList',
         link: '/questionList'
       }
+    ]
+  },
+  {
+    index: '3',
+    icon: DataAnalysis,
+    menu: 'Tutorials and Courses',
+    subMenu: [
+      {
+        index: '2-2',
+        subMenuName: 'course_list',
+        pathName: 'course-list',
+        link: '/course-list'
+      },
     ]
   }
 ];

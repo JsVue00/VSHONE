@@ -4,6 +4,8 @@ import DefaultLayout from '@/layouts/DefaultLayout.vue';
 import GameLayout from '@/layouts/PlayQuizLayout.vue';
 import gameRoutes from './quiz';
 import AdminLayout from '@/layouts/AdminLayout.vue';
+import VideoCourseLayout from '@/layouts/VideoCourseLayout.vue';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -60,10 +62,22 @@ const router = createRouter({
           name: 'update-quiz',
           component: () => import('@/pages/admin/quizzes/UpdateQuizPage.vue'),
           meta: { Layout: AdminLayout, requiredAuth: true }
+        },
+        //
+        {
+          path: 'course-list',
+          name: 'course-list',
+          component: () => import('@/pages/admin/courses/AdminCourseListPage.vue'),
+          meta: { Layout: AdminLayout, requiredAuth: true }
         }
       ]
     },
-
+    {
+      path: '/course',
+      name: 'course',
+      component: () => import('@/pages/courses/CourseListPage.vue'),
+      meta: { Layout: VideoCourseLayout, requiredAuth: true }
+    },
     {
       path: '/test',
       name: 'test',
