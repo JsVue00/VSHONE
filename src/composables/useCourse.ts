@@ -1,59 +1,69 @@
-import type { IGetCourseResponse } from '@/models/course';
+import { normalValidate } from '@/libraries/elementPlusHelper/formValidationHelper';
+import type { ICreateCourseRequest, IGetCourseResponse } from '@/models/course';
+import type { FormInstance, FormRules } from 'element-plus';
+import { reactive, ref } from 'vue';
+import courseApiCalling from '@/apis/courses/couseApiCalling';
+import notificationHelper from '@/libraries/notificationHelper';
+import couseApiCalling from '@/apis/courses/couseApiCalling';
+import formHelper from '@/libraries/elementPlusHelper/formHelper';
 
 export default function useCourse() {
-  const data: IGetCourseResponse[] = [
-    {
-      Title: 'Array',
-      Credit: 'Bro Code',
-      VideoLink: 'https://www.youtube.com/embed/lfmg-EJ8gm4?si=POk6UMMtclWkUgj3',
-      Description: ' Web Dev Series',
-      CategoryId: null,
-      SubCategoryId: null
-    },
-    {
-      Title: 'Array',
-      Credit: 'Bro Code',
-      VideoLink: 'https://www.youtube.com/embed/c2M-rlkkT5o?si=XqBe2irIJ4-dOJOP',
-      Description:
-        'Working with arrays in JavaScript used to be a pain with barely any support for complex array operations. Fast forward to today, though, and there are tons of amazing JavaScript array methods available to us. In this video I will be covering the 8 most important array methods in JavaScript.',
-      CategoryId: null,
-      SubCategoryId: null
-    },
-    {
-      Title: 'Array',
-      Credit: 'Bro Code',
-      VideoLink: 'https://www.youtube.com/embed/lfmg-EJ8gm4?si=POk6UMMtclWkUgj3',
-      Description: ' Web Dev Series',
-      CategoryId: null,
-      SubCategoryId: null
-    },
-    {
-      Title: 'A flexbox trick to improve text wrapping',
-      Credit: 'Kevin Powell',
-      VideoLink: 'https://www.youtube.com/embed/3ugXM3ZDUuE?si=ODCUM8qHkXmi25he',
-      Description:
-        'Working with arrays in JavaScript used to be a pain with barely any support for complex array operations. Fast forward to today, though, and there are tons of amazing JavaScript array methods available to us. In this video I will be covering the 8 most important array methods in JavaScript.',
-      CategoryId: null,
-      SubCategoryId: null
-    },
-    {
-      Title: 'Array',
-      Credit: 'Bro Code',
-      VideoLink: 'https://www.youtube.com/embed/lfmg-EJ8gm4?si=POk6UMMtclWkUgj3',
-      Description: ' Web Dev Series',
-      CategoryId: null,
-      SubCategoryId: null
-    },
-    {
-      Title: 'Array',
-      Credit: 'Bro Code',
-      VideoLink: 'https://www.youtube.com/embed/c2M-rlkkT5o?si=XqBe2irIJ4-dOJOP',
-      Description:
-        'Working with arrays in JavaScript used to be a pain with barely any support for complex array operations. Fast forward to today, though, and there are tons of amazing JavaScript array methods available to us. In this video I will be covering the 8 most important array methods in JavaScript.',
-      CategoryId: null,
-      SubCategoryId: null
-    }
-  ];
+  const dialogFormVisible = ref(false);
+  const isEditing = ref<boolean>(false);
+  const isLoading = ref<boolean>(false);
+  const ruleFormRef = ref<FormInstance>();
+  const courseData = ref<IGetCourseResponse[]>([])
 
-  return { data };
+  const courseRquestForm = reactive<ICreateCourseRequest>({
+    Title: '',
+    CategoryId: null,
+    SubCategoryId: 0,
+    Credit: '',
+    VideoLink: ''
+  });
+  const rules = reactive<FormRules<ICreateCourseRequest>>({
+    Title: normalValidate,
+    CategoryId: normalValidate,
+    SubCategoryId: normalValidate,
+    Credit: normalValidate,
+    VideoLink: normalValidate
+  });
+
+  const createNewCourse = async () => {
+    try {
+      isLoading.value = true;
+      const response = await couseApiCalling.callCreateCourse(courseRquestForm);
+      notificationHelper.success('', response.data.Message);
+      getAllCourses();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      isLoading.value = false;
+      dialogFormVisible.value = false;
+    }
+  }
+  const onSubCreate = formHelper.onSubmitForm(createNewCourse);
+
+  const getAllCourses = async () => {
+    try {
+      isLoading.value = true;
+      const result = await courseApiCalling.callGetAllCourses();
+      courseData.value = result.data.Data as IGetCourseResponse[];
+    } catch (error: any) {
+      notificationHelper.error('', error.message)
+    } finally {
+      isLoading.value
+    }
+  }
+  return {
+    getAllCourses,
+    courseData,
+    onSubCreate,
+    rules,
+    dialogFormVisible,
+    courseRquestForm,
+    isEditing,
+    ruleFormRef,
+    isLoading
+  };
 }
