@@ -1,29 +1,36 @@
 <template>
-  <div class="w-full bg-background1">
-    <div class="section1 min-h-screen relative">
-
-      <button @click="$router.push({ name: 'login' })"
-        class="absolute right-10 top-10 border border-white rounded-md px-4 py-1 bg-[#0a0c43] text-white font-bold hover:bg-[#034596] text-center">
-        L O G I N
-      </button>
-      <h1 class="md:text-[80px] text-[40px] absolute top-[100px] left-[50px] text-white">Welcome</h1>
-      <img class="absolute right-[40%] md:right-[200px] md:w-[300px] w-[100px] md:bottom-2 bottom-[100px]"
-        src="https://cdn-icons-png.flaticon.com/128/9042/9042238.png" alt="" />
+  <div class="w-full bg-[#0b0a2a] flex pb-12 flex-col px-2 md:px-5 justify-center items-center min-h-screen relative">
+    <div class=" absolute lg:right-44 right-10 lg:top-12  top-4"><button @click="$router.push({ name: 'login' })"
+        class="h-[30px] w-[115px] bg-[#02A9F1] rounded-[16px] border-2 border-[#FFC701] text-white uppercase font-bold">Login</button>
     </div>
-    <section class="section2 min-h-screen relative">
-      <img src="https://cdn-icons-png.flaticon.com/128/7770/7770324.png"
-        class=" md:block hidden question left-[100px] top-[200px]" alt="" />
-      <button class="absolute right-10 top-10" @click="$router.push({ name: 'game' })">
-        <img class="md:w-60 w-20 h-auto object-cover hover:w-64 hover:transition-all hover:opacity-80"
-          src="@/assets/images/tryNow.png" alt="">
+    <div
+      class="text-center relative flex flex-col w-full overflow-hidden lg:pt-80 pt-40 text-[60px] lg:text-[200px] text-white">
+      <span>Welcome</span>
+      <div class="spin"></div>
+      <div class="spin2"></div>
+
+    </div>
+    <div
+      class="lg:mt-[340px] mt-24 flex flex-col gap-20 justify-center px-5 rounded-[16px] items-center py-12 min-h-[200px] max-w-[1460px] bg-black bg-opacity-25 ">
+      <div class="lg:text-[80px] text-[30px] text-white text-center"> Try your challenge with
+        multiple questions</div>
+      <button @click="$router.push({ name: 'game' })"
+        class="lg:h-[147px] h-[60px] w-[200px] lg:w-[665px] bg-gradient-to-r from-[#154394] to-[#00FF47] rounded-[50px]">
+        <span class="lg:text-[80px] text-[30px] text-white">Sart Now</span>
       </button>
-      <div
-        class="w-[calc(100dvw/2)] bg-gray-700 bg-opacity-60 p-2 rounded-md shadow-md absolute right-3 bottom-[100px] content">
-        <h1 class="md:text-[40px] text-white font-bold">
-          <!-- Try your challenge with multiple questions types -->
-        </h1>
-      </div>
-    </section>
+    </div>
+    <div
+      class="lg:mt-[340px] mt-24 flex flex-col gap-20 justify-center lg:px-5 px-2 rounded-[16px] items-center py-12 min-h-[200px] max-w-[1460px] bg-black bg-opacity-25 ">
+      <div class="lg:text-[80px] text-[30px] text-white text-center"> Learn with master teacher
+        channel on Youtube</div>
+      <button @click="$router.push({ name: 'course' })"
+        class="lg:h-[147px] h-[60px] w-[200px] lg:w-[665px] bg-gradient-to-r from-[#154394] to-[#00FF47] rounded-[50px]">
+        <span class="lg:text-[80px] text-[30px] text-white">Sart Now</span>
+      </button>
+    </div>
+    <div class=" min-h-[200px]">
+
+    </div>
   </div>
 </template>
 
@@ -32,52 +39,58 @@ import useQuiz from '@/composables/useQuiz';
 useQuiz();
 </script>
 <style scoped>
-.section1 {
-  background-image: linear-gradient(45deg, #11173f, #0a0c43, #034596);
-}
-
-.section2,
-.section1 {
-  min-height: 90dvh;
-}
-
-.section2 {
-  background-image: url('https://www.slido.com/static/slido-live-quizzes-hero.a15bccb1.1600.jpg');
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
-
-.question {
-  height: auto;
+.spin,
+.spin2 {
+  width: 200px;
+  height: 5px;
+  background-color: red;
+  border-radius: 5px;
   position: absolute;
-  animation: top-bottom 2s ease-in-out infinite;
+  animation: spin 2s linear infinite;
 }
 
-@keyframes top-bottom {
+.spin2 {
+  bottom: 30px;
+  animation: spin2 2s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: translateX(0vw);
+  }
+
+  50% {
+    background: #f2ff00;
+  }
+
+  to {
+    transform: translateX(100vw)
+  }
+}
+
+@keyframes spin2 {
   0% {
-    width: 250px;
-    transform: translateY(0);
+    transform: translateX(100vw);
   }
 
-  25% {
-    width: 270px;
-    transform: translateY(50px);
-  }
-
-  60% {
-    width: 350px;
-    transform: translateY(100px);
+  50% {
+    background: blue;
   }
 
   100% {
-    width: 250px;
-    transform: translateY(0);
+    transform: translateX(0vw)
   }
 }
 
-@media screen and(max-width: 700px) {
-  .section2 {
-    background-image: url("https://i.quotev.com/lsn4lr5y43yq.jpg");
+@media screen and (max-width:700px) {
+
+  .spin2 {
+    bottom: 10px;
+  }
+
+  .spin,
+  .spin2 {
+    width: 100px;
   }
 }
 </style>
