@@ -4,10 +4,12 @@ import type { ICreateCourseRequest, IGetCourseResponse } from "@/models/course";
 
 export default {
     async callGetAllCourses(): IAxiosPromise<IGetCourseResponse> {
-        const reponse = await api.get('course');
-        return reponse;
+        return await api.get('course');
     },
     async callCreateCourse(request: ICreateCourseRequest) {
         return await api.post('course', request);
+    },
+    async callUpdateCourse(Id: number, request: ICreateCourseRequest) {
+        return await api.put('course/' + Id, request);
     }
 }

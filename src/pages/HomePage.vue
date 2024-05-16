@@ -20,7 +20,7 @@
       <div
         class="w-[calc(100dvw/2)] bg-gray-700 bg-opacity-60 p-2 rounded-md shadow-md absolute right-3 bottom-[100px] content">
         <h1 class="md:text-[40px] text-white font-bold">
-          Try your challenge with multiple questions types
+          <!-- Try your challenge with multiple questions types -->
         </h1>
       </div>
     </section>

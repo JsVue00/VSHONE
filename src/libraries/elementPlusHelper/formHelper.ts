@@ -12,7 +12,12 @@ const onSubmitForm = (fun: () => void) => {
   };
   return onSubmitFunction;
 };
+const clearForm = (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  formEl.resetFields()
+}
 
 export default {
-  onSubmitForm
+  onSubmitForm,
+  clearForm
 };

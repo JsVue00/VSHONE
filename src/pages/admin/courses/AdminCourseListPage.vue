@@ -1,7 +1,9 @@
 <template>
     <div>
         <FormHeader :title="$t('course_list')">
-            <el-button type="primary" @click="dialogFormVisible = true, isLoading = false">{{ $t('create_new')
+            <el-button type="primary"
+                @click="dialogFormVisible = true, isEditing = false, formHelper.clearForm(ruleFormRef)">{{
+                    $t('create_new')
                 }}</el-button>
         </FormHeader>
         <el-table :data="courseData" :loading="isLoading" border header-cell-class-name="my-table-header"
@@ -12,7 +14,7 @@
                 <template #default="{ row }">
                     <a class=" text-blue-700" :href="row.VideoLink" target="_blank" rel="noopener noreferrer">{{
                         row.VideoLink
-                    }}</a>
+                        }}</a>
                 </template>
             </el-table-column>
             <el-table-column prop="Description" :label="$t('description')">
@@ -26,14 +28,15 @@
                 </template>
             </el-table-column>
             <el-table-column fixed="right" align="center" :label="$t('actions')" width="100">
-                <template>
-                    <!-- <el-button @click="onUpdate(scope.row.CategoryId)" type="warning" link :icon="Edit" circle /> -->
+                <template #default="{ row }">
+                    <el-button @click="onOpenEditForm(row.Id), isLoading = false" type="warning" link :icon="Edit"
+                        circle />
                 </template>
             </el-table-column>
         </el-table>
         <!-- Dialogin -->
         <el-dialog v-model="dialogFormVisible" :title="isEditing ? $t('update_category') : $t('add_new_course')"
-            width="600">
+            width="750">
             <el-form :model="courseRquestForm" label-width="150" :rules="rules" ref="ruleFormRef">
                 <el-form-item :label="$t('title')" prop="Title">
                     <el-input v-model="courseRquestForm.Title" autocomplete="off" placeholder="Enter the value" />
@@ -51,12 +54,14 @@
                     </el-select>
                 </el-form-item>
                 <el-form-item :label="$t('remark')" prop="Description">
-                    <el-input v-model="courseRquestForm.Description" autocomplete="off" placeholder="Enter the value" />
+                    <el-input :autosize="{ minRows: 2, maxRows: 4 }" type="textarea"
+                        v-model="courseRquestForm.Description" autocomplete="off" placeholder="Enter the value" />
                 </el-form-item>
             </el-form>
             <template #footer>
                 <div class="dialog-footer">
-                    <el-button type="primary" :loading="isLoading" @click="onSubCreate(ruleFormRef)">
+                    <el-button type="primary" :loading="isLoading"
+                        @click=" isEditing ? onSubminUpdate(ruleFormRef) : onSubminCreate(ruleFormRef)">
                         {{ isEditing ? $t('update') : $t('save') }}
                     </el-button>
                 </div>
@@ -65,11 +70,14 @@
     </div>
 </template>
 <script lang="ts" setup>
+import { Edit } from '@element-plus/icons-vue'
 import useCourse from '@/composables/useCourse';
 import FormHeader from '@/components/admin/FormHeader.vue';
 import { onMounted } from 'vue';
 import useCategory from '@/composables/useCategory';
 import { dateTimeConverter } from '@/libraries/utils/converter';
+import formHelper from '@/libraries/elementPlusHelper/formHelper';
+
 function processUrls(text: string) {
     return text.replace(/((http|https|ftp):\/\/[\w?=&.-;#~%-]+(?![\w\s?&.;#~%"=-]*>))/g, '<a href="$1">$1</a>');
 }
@@ -77,13 +85,15 @@ const { categoryData } = useCategory();
 const {
     getAllCourses,
     courseData,
-    onSubCreate,
+    onSubminCreate,
     rules,
     dialogFormVisible,
     courseRquestForm,
     isEditing,
     isLoading,
-    ruleFormRef
+    ruleFormRef,
+    onOpenEditForm,
+    onSubminUpdate
 } = useCourse();
 
 onMounted(() => {

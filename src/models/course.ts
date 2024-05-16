@@ -1,4 +1,5 @@
 export interface IGetCourseResponse {
+  Id:number
   Title: string;
   CategoryId: number | null;
   SubCategoryId: number | null;
