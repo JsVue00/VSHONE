@@ -1,6 +1,6 @@
 <template>
   <div class="w-full bg-[#0b0a2a] flex pb-12 flex-col px-2 md:px-5 justify-center items-center min-h-screen relative">
-    <div class=" absolute lg:right-44 right-10 lg:top-12  top-4"><button @click="$router.push({ name: 'login' })"
+    <div class=" absolute lg:right-44 right-10 lg:top-12  z-10 top-4"><button @click="$router.push({ name: 'login' })"
         class="h-[30px] w-[115px] bg-[#02A9F1] rounded-[16px] border-2 border-[#FFC701] text-white uppercase font-bold">Login</button>
     </div>
     <div
