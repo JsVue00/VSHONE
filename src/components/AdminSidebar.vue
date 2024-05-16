@@ -6,7 +6,7 @@
         @close="handleClose">
         <el-sub-menu :index="nav.index" :style="{
           backgroundColor: nav.subMenu.some((sub) => $route.path.includes(sub.link))
-            ? 'var(--primaryHover)'
+            ? '#070150'
             : ''
         }">
           <template #title>
