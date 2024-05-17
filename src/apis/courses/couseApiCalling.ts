@@ -11,5 +11,8 @@ export default {
     },
     async callUpdateCourse(Id: number, request: ICreateCourseRequest) {
         return await api.put('course/' + Id, request);
+    },
+    async callDeleteCourse(Id: number) {
+        return await api.delete('course/' + Id);
     }
 }

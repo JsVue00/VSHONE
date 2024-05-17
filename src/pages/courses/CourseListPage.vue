@@ -33,7 +33,8 @@
             </div>
         </div>
     </div>
-    <el-dialog v-model="centerDialogVisible" width="70%" @close="handleClose">
+    <el-dialog v-model="centerDialogVisible" fullscreen="true" :close-icon="CloseBold"
+        style=" background: black !important; padding: 0 !important; border-radius: 0 !important;" @close="handleClose">
         <div v-loading="isLoading" :element-loading-background="'#000000'">
             <iframe ref="iframe" width="100%" class="min-h-[80vh]" :src="video + '?modestbranding=1'" title="test"
                 allowfullscreen></iframe>
@@ -44,6 +45,7 @@
 <script lang="ts" setup>
 import useCourse from '@/composables/useCourse';
 import { onMounted, ref } from 'vue';
+import { CloseBold } from "@element-plus/icons-vue";
 
 const video = ref<string>();
 const isLoading = ref<boolean>(false);
@@ -69,19 +71,4 @@ onMounted(() => {
 })
 </script>
 
-<style>
-.ytp-youtube-button {
-    display: none !important;
-    visibility: hidden !important;
-}
-
-.el-dialog {
-    --el-dialog-bg-color: rgba(0, 0, 0, 0.649) !important;
-}
-
-.el-dialog__close {
-    color: rgb(255, 213, 0) !important;
-    font-size: 25px !important;
-    font-weight: bold !important;
-}
-</style>
+<style type="css" scoped></style>

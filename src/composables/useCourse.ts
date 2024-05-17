@@ -1,7 +1,7 @@
 import { normalValidate } from '@/libraries/elementPlusHelper/formValidationHelper';
 import type { ICreateCourseRequest, IGetCourseResponse } from '@/models/course';
 import type { FormInstance, FormRules } from 'element-plus';
-import { computed, reactive, ref } from 'vue';
+import { reactive, ref } from 'vue';
 import courseApiCalling from '@/apis/courses/couseApiCalling';
 import notificationHelper from '@/libraries/notificationHelper';
 import couseApiCalling from '@/apis/courses/couseApiCalling';
@@ -9,6 +9,8 @@ import formHelper from '@/libraries/elementPlusHelper/formHelper';
 
 export default function useCourse() {
   const dialogFormVisible = ref(false);
+  const confirmDialogVisible = ref(false);
+
   const isEditing = ref<boolean>(false);
   const isLoading = ref<boolean>(false);
   const ruleFormRef = ref<FormInstance>();
@@ -70,6 +72,24 @@ export default function useCourse() {
       dialogFormVisible.value = false;
     }
   }
+
+  const openConfirmForm = (Id: number) => {
+    courseId.value = Id;
+    confirmDialogVisible.value = true;
+  }
+  const onConfirmDelete = async () => {
+    try {
+      isLoading.value = true;
+      const reponse = await courseApiCalling.callDeleteCourse(courseId.value);
+      notificationHelper.success('', reponse.data.Message);
+      getAllCourses();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      confirmDialogVisible.value = false;
+      isLoading.value = false;
+    }
+  };
   const onSubminUpdate = formHelper.onSubmitForm(updateCourse);
   const onSubminCreate = formHelper.onSubmitForm(createNewCourse);
 
@@ -97,5 +117,8 @@ export default function useCourse() {
     isLoading,
     onOpenEditForm,
     onSubminUpdate,
+    onConfirmDelete,
+    openConfirmForm,
+    confirmDialogVisible
   };
 }
