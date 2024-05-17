@@ -41,13 +41,20 @@ const filterCategoryId = ref<number>(0)
 const filterQuestion = ref<string>('')
 
 const quizDataFilter = computed(() => {
-  if (filterCategoryId.value !== 0) {
+  if (filterCategoryId.value !== 0 && filterQuestion.value !== '') {
+    return quizData.value.filter((quiz) => {
+      return quiz.CategoryId === filterCategoryId.value && quiz.Question.toLowerCase().includes(filterQuestion.value.toLowerCase());
+    });
+  } else if (filterCategoryId.value !== 0) {
     return quizData.value.filter((quiz) => quiz.CategoryId === filterCategoryId.value);
   } else if (filterQuestion.value !== '') {
     return quizData.value.filter((quiz) => quiz.Question.toLowerCase().includes(filterQuestion.value.toLowerCase()));
+  } else {
+    return quizData.value;
   }
-  else return quizData.value;
 })
+
+
 
 onMounted(() => {
   getAllQuizzes();
