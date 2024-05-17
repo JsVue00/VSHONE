@@ -33,10 +33,14 @@ export default function useQuiz() {
   ];
 
   async function getAllQuizzes() {
-    const response = await quizApi.getAllQuizzes();
-    quizData.value = response.data.Data as IGetQuizResponse[];
-    const data = response.data.Data as IGetQuizResponse[];
-    store.quizList = data;
+    try {
+      const response = await quizApi.getAllQuizzes();
+      quizData.value = response.data.Data as IGetQuizResponse[];
+      const data = response.data.Data as IGetQuizResponse[];
+      store.quizList = data;
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   const optionsField = ref<Option[]>([
