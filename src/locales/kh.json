@@ -1,6 +1,7 @@
 {
   "a": "A",
   "all_quiz_categories": "ប្រភេទនៃសំណួរ",
+  "add_new_course": "បង្កើតមេរៀនថ្មី",
   "actions": "សកម្មភាព",
   "answer": "ចម្លើយ",
   "language": "English",
@@ -14,7 +15,9 @@
   "category_id": "ប្រភេទ​ Id",
   "category_name": "ឈ្មោះប្រភេទ",
   "category_list": "បញ្ជីប្រភេទ",
+  "course_list": "បញ្ជីមេរៀន",
   "create": "បង្កើត",
+  "credit": "ម្ចាស់",
   "create_new": "បង្កើតថ្មី",
   "created_at": "ថ្ងៃបង្កើត",
   "create_new_category": "បង្កើតប្រភេទថ្មី",
@@ -37,7 +40,8 @@
 
   "i": "I",
   "image": "រូបភាព",
-
+  "m": "M",
+  "modified_at": "ថ្ងៃកែប្រែ",
   "o": "O",
   "options": "ជម្រើស",
 
@@ -72,8 +76,10 @@
   "user_list": "បញ្ជីអ្នកប្រើប្រាស់",
   "user_management": "ការគ្រប់គ្រង អ្នកប្រើប្រាស់",
   "update_category": "កែប្រែប្រភេទ",
+  "update_sub_category": "កែប្រែប្រភេទរង",
 
   "v": "V",
+  "video_link": "វីដេអូ​ Link",
   "w": "W",
   "wrong": "មិនត្រឹមត្រូវ"
 }
