@@ -10,9 +10,9 @@ export default {
     return api.post('subcategory', request);
   },
   callUpdateSubCategory(Id: number, request: ISubCategoryRequest) {
-    return api.put('subcategory/' + Id, request);
+    return api.put(`subcategory/${Id}`, request);
   },
   callDeleteSubCategory(Id: number) {
-    return api.delete('subcategory/' + Id);
+    return api.delete(`subcategory/${Id}`);
   }
 };

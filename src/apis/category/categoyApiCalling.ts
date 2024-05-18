@@ -13,9 +13,9 @@ export default {
     return api.delete('category?categoryId=' + Id);
   },
   callUpdateCategory(Id: number, request: ICategoryRequest) {
-    return api.put('category/' + Id, request);
+    return api.put(`category/${Id}`, request);
   },
-  callGetCategoryById(CategoryId: number): IAxiosPromise<ICategoryResponse> {
-    return api.get('category/' + CategoryId);
+  callGetCategoryById(Id: number): IAxiosPromise<ICategoryResponse> {
+    return api.get(`category/${Id}`);
   }
 };

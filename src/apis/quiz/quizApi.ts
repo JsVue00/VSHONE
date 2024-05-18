@@ -15,7 +15,7 @@ export default {
   updateQuiz(Id: number, reqest: ICreateQuizRequest) {
     return quizApiCalling.callUpdateQuiz(Id, reqest);
   },
-  deleteQuiz(Id: number) {
+  deleteQuiz(Id: number): IAxiosPromise<any> {
     return quizApiCalling.callDeleteQuiz(Id);
   }
 };

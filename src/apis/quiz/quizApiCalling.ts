@@ -10,12 +10,12 @@ export default {
     return api.get('Quiz');
   },
   callGetQuizById(Id: number): IAxiosPromise<IGetQuizResponse> {
-    return api.get('Quiz/' + Id);
+    return api.get(`Quiz/${Id}`);
   },
   callUpdateQuiz(Id: number, request: ICreateQuizRequest): IAxiosPromise<IGetQuizResponse> {
-    return api.put('Quiz/' + Id, request);
+    return api.put(`Quiz/${Id}`, request);
   },
   callDeleteQuiz(Id: number) {
-    return api.delete('Quiz/' + Id);
+    return api.delete(`Quiz/${Id}`);
   }
 };
