@@ -4,7 +4,11 @@
       v-loading="isLoading">
       <el-table-column prop="CategoryId" :label="$t('category_id')" width="140" align="center" />
       <el-table-column prop="CategoryName" :label="$t('category_name')" width="150" />
-      <el-table-column prop="Image" :label="$t('image')" width="120" />
+      <el-table-column prop="Image" :label="$t('image')" width="120">
+        <div>
+          <img src="https://localhost:3001/api/ImageUpload?imageName=13810c76-91ec-4ad8-9f7b-b59df0bbe9a9.png" alt="">
+        </div>
+      </el-table-column>
       <el-table-column prop="Description" :label="$t('description')" />
 
       <el-table-column fixed="right" align="center" :label="$t('actions')" width="100">
