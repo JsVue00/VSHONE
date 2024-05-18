@@ -83,6 +83,37 @@ const navPages = [
         link: '/course-list'
       },
     ]
+  },
+  {
+    index: '3',
+    icon: DataAnalysis,
+    menu: 'GOC',
+    subMenu: [
+      {
+        index: '2-2',
+        subMenuName: 'city_list',
+        pathName: 'city-list',
+        link: '/city-list'
+      },
+      {
+        index: '2-2',
+        subMenuName: 'province_list',
+        pathName: 'province-list',
+        link: '/province-list'
+      },
+      {
+        index: '2-2',
+        subMenuName: 'district_list',
+        pathName: 'district-list',
+        link: '/district-list'
+      },
+      {
+        index: '2-2',
+        subMenuName: 'tourist_site_list',
+        pathName: 'tourist-site-list',
+        link: '/tourist-site-list'
+      },
+    ]
   }
 ];
 </script>
