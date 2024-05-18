@@ -8,7 +8,7 @@
         </FormHeader>
         <el-table :data="courseData" v-loading="isLoading" border header-cell-class-name="my-table-header"
             style="width: 100%">
-            <el-table-column prop="Title" :label="$t('title')" width="250" align="center" />
+            <el-table-column prop="Title" :label="$t('title')"/>
             <el-table-column prop="Credit" :label="$t('credit')" width="150" />
             <el-table-column prop="VideoLink" :label="$t('video_link')" width="220">
                 <template #default="{ row }">
@@ -17,12 +17,12 @@
                     }}</a>
                 </template>
             </el-table-column>
-            <el-table-column prop="Description" :label="$t('description')">
+            <el-table-column prop="Description" :label="$t('description')" width="300">
                 <template #default="{ row }">
                     <div v-html="row.Description"></div>
                 </template>
             </el-table-column>
-            <el-table-column prop="ModifiedAt" :label="$t('modified_at')">
+            <el-table-column prop="ModifiedAt" :label="$t('modified_at')" width="200">
                 <template #default="{ row }">
                     <span>{{ dateTimeConverter(row.ModifiedAt) }}</span>
                 </template>

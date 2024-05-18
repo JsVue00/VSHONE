@@ -33,10 +33,9 @@
             </div>
         </div>
     </div>
-    <el-dialog v-model="centerDialogVisible" fullscreen="true" :close-icon="CloseBold"
-        style=" background: black !important; padding: 0 !important; border-radius: 0 !important;" @close="handleClose">
+    <el-dialog v-model="centerDialogVisible" :close-icon="CloseBold" class="dialog" @close="handleClose">
         <div v-loading="isLoading" :element-loading-background="'#000000'">
-            <iframe ref="iframe" width="100%" class="min-h-[80vh]" :src="video + '?modestbranding=1'" title="test"
+            <iframe ref="iframe" width="100%" class="min-h-[80vh]" :src="video + '?modestbranding=1'"
                 allowfullscreen></iframe>
         </div>
     </el-dialog>
@@ -70,5 +69,23 @@ onMounted(() => {
     getAllCourses()
 })
 </script>
+<style>
+.dialog {
+    background: black !important;
+    padding: 0 !important;
+    border-radius: 10px !important;
+    overflow: hidden !important
+}
 
-<style type="css" scoped></style>
+@media screen and (max-width:700px) {
+    .dialog {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 700px) {
+    .dialog {
+        width: 80%;
+    }
+}
+</style>
