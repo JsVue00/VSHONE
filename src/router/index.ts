@@ -69,7 +69,31 @@ const router = createRouter({
           name: 'course-list',
           component: () => import('@/pages/admin/courses/AdminCourseListPage.vue'),
           meta: { Layout: AdminLayout, requiredAuth: true }
-        }
+        },
+        {
+          path: 'city-list',
+          name: 'city-list',
+          component: () => import('@/pages/admin/goc/CityListPage.vue'),
+          meta: { Layout: AdminLayout, requiredAuth: true }
+        },
+        {
+          path: 'province-list',
+          name: 'province-list',
+          component: () => import('@/pages/admin/goc/ProvinceListPage.vue'),
+          meta: { Layout: AdminLayout, requiredAuth: true }
+        },
+        {
+          path: 'district-list',
+          name: 'district-list',
+          component: () => import('@/pages/admin/goc/DistrictListPage.vue'),
+          meta: { Layout: AdminLayout, requiredAuth: true }
+        },
+        {
+          path: 'tourist-site-list',
+          name: 'tourist-site-list',
+          component: () => import('@/pages/admin/goc/TouristSiteListPage.vue'),
+          meta: { Layout: AdminLayout, requiredAuth: true }
+        },
       ]
     },
     {
