@@ -23,3 +23,29 @@ defineProps<{
 }>();
 
 </script>
+<style>
+.el-dialog {
+    padding: 0 !important;
+    border-radius: 5px !important;
+    overflow: hidden !important;
+}
+
+span[role='heading'] {
+    color: var(--text1) !important;
+}
+
+.el-dialog__header {
+    padding: 8px 0 0 20px !important;
+    height: 40px !important;
+    width: 100%;
+    background-color: var(--background1) !important;
+}
+
+.el-dialog__body {
+    padding: 15px !important;
+}
+
+.dialog-footer {
+    padding: 0 20px 20px 20px !important;
+}
+</style>
