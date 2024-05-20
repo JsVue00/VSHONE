@@ -87,7 +87,7 @@ const navPages = [
   {
     index: '3',
     icon: DataAnalysis,
-    menu: 'GOC',
+    menu: 'gography management',
     subMenu: [
       {
         index: '2-2',

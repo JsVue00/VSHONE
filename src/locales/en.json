@@ -25,6 +25,7 @@
   "create_new": "Create New",
   "create_new_category": " Create New Category",
   "create_new_quiz": "Create New Quiz",
+  "create_new_province": "Create New Province",
   "correct": "Correct",
   "course_list": "Course List",
   "correct_answer": "Correct Answer",
@@ -52,6 +53,10 @@
   "m": "M",
   "modified_at": "Modified At",
 
+  "n": "N",
+  "name_en": "English Name",
+  "name_kh": "Khmer Name",
+
   "o": "O",
   "options": "Options",
 
@@ -75,7 +80,7 @@
 
   "p": "P",
   "province": "Province",
-  "province_id": "Province Id",
+  "province_code": "Province Code",
   "province_name": "Province Name",
   "province_list": "Province List",
   "please_select_another_answer": "Please Select Another Answer",
