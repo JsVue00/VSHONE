@@ -10,11 +10,13 @@
       </div>
       <div class="  rounded-sm text-text1 p-1">
         <div v-for="(a, index) in JSON.parse(item.Options)" :key="index" class="p-4">
-          <el-radio-group v-model="answer" style="width: 100%;">
-            <el-radio :value="index + 1" size="large" border style="width: 100%;" @change="isSelected = false">{{
-              index + 1 + ': ' }} {{
-                a
-              }}</el-radio>
+          <el-radio-group v-model="answer" style="width: 100%;" class=" h-auto">
+            <el-radio :value="index + 1" size="large" border style="width: 100%;" @change="isSelected = false">
+              <div class=" text-wrap flex">
+                {{
+                  index + 1 + '/.' }}<div v-html="a"></div>
+              </div>
+            </el-radio> 
           </el-radio-group>
         </div>
       </div>
@@ -31,10 +33,8 @@
 import useStartQuiz from '@/composables/useStartQuiz';
 const { myQuestion, answer, isSelected, disabledRoute, onSubmit, onNextGame } =
   useStartQuiz();
-
 </script>
-
-<style type="Scss">
+<style>
 .el-radio-group .is-checked {
   background: #ffffff !important;
   box-shadow: none !important;
@@ -43,6 +43,15 @@ const { myQuestion, answer, isSelected, disabledRoute, onSubmit, onNextGame } =
   span {
     color: #000000 !important;
   }
+}
+.el-radio.el-radio--large {
+  height: auto !important;
+  padding: 5px !important;
+}
+
+.el-radio-group {
+  height: auto !important;
+
 }
 
 .quiz-bg {
