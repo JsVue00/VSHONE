@@ -4,7 +4,7 @@ import { reactive, ref } from "vue";
 import type { FormRules } from 'element-plus';
 import { normalValidate } from "@/libraries/elementPlusHelper/formValidationHelper";
 import type { UploadFile } from 'element-plus'
-import api from '@/apis/api';
+import api, { deleteImage } from '@/apis/api';
 import notificationHelper from "@/libraries/notificationHelper";
 import formHelper from "@/libraries/elementPlusHelper/formHelper";
 
@@ -13,6 +13,7 @@ export default function useCity() {
     const pageLoading = ref<boolean>(false)
     const isEditing = ref<boolean>(false);
     const cityData = ref<IGetCityResponse[]>([])
+    const fileImagetoDelete = ref<string>()
 
     const cityRequestForm = reactive<ICityRequest>({
         CityName: "",
@@ -28,7 +29,7 @@ export default function useCity() {
 
 
     const fileName = ref<String>('')
-    const handleChange = async (uploadFile: UploadFile) => {
+    const handleChange = async (uploadFile: UploadFile,) => {
         try {
             const formData = new FormData();
             formData.append("file", uploadFile.raw!);
@@ -70,6 +71,7 @@ export default function useCity() {
         dialogFormVisible.value = true;
         const dataById = cityData.value.find((data) => data.Id === Id);
         if (dataById) {
+            fileImagetoDelete.value = dataById.CityImage;
             cityRequestForm.CityName = dataById.CityName;
             cityRequestForm.CountryId = dataById.CountryId;
             cityRequestForm.CityImage = dataById.CityImage;
@@ -77,6 +79,9 @@ export default function useCity() {
     }
     const updateCity = async () => {
         try {
+            if (cityRequestForm.CityImage !== fileImagetoDelete.value) {
+                deleteImage('cities', fileImagetoDelete.value!);
+            }
             await cityApiCalling.callUpdateCity(cityId.value, cityRequestForm);
             notificationHelper.success('', 'City Updated Successfully');
             getAllCities();
