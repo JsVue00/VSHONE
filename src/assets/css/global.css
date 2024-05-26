@@ -6,7 +6,7 @@
     border: none !important;
     opacity: 1;
     transition: opacity .5s ease-out !important;
-    height: 25px;
+    height: 28px;
 }
 
 .el-button--primary:hover {
@@ -17,6 +17,10 @@
     border-color: var(--success) !important;
 }
 
+/* .el-overlay-dialog {
+    overflow: hidden !important;
+} */
+
 .el-table {
     border-radius: 5px !important;
 }
@@ -26,7 +30,33 @@
     background-color: var(--background1) !important;
 }
 
+/* dialog */
+.el-dialog {
+    padding: 0 !important;
+    border-radius: 5px !important;
+    overflow: hidden !important;
+}
 
+span[role='heading'] {
+    color: var(--text1) !important;
+}
+
+.el-dialog__header {
+    padding: 8px 0 0 20px !important;
+    height: 40px !important;
+    width: 100%;
+    background-color: var(--background1) !important;
+}
+
+.el-dialog__body {
+    padding: 15px !important;
+}
+
+.dialog-footer {
+    padding: 0 20px 20px 20px !important;
+}
+
+/* end custom dialog */
 :root {
     --el-menu-active-color: var(--secondary) !important;
     --el-menu-text-color: var(--text1) !important;
