@@ -91,7 +91,7 @@ const router = createRouter({
         {
           path: 'tourist-site-list',
           name: 'tourist-site-list',
-          component: () => import('@/pages/admin/goc/TouristSiteListPage.vue'),
+          component: () => import('@/pages/admin/tours/TourListPage.vue'),
           meta: { Layout: AdminLayout, requiredAuth: true }
         },
       ]

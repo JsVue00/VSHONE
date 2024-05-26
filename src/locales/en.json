@@ -4,6 +4,7 @@
   "all": "All",
   "add_new_course": "Add New Course",
   "answer": "Answer",
+  "area_name": "Area Name",
   "language": "ខ្មែរ",
   "home": "Home",
   "login": "Login",
@@ -11,6 +12,7 @@
 
   "c": "C",
   "cacel": "Cancel",
+  "confirm": "Confirm",
   "category": "Category",
   "category_id": "Category Id",
   "category_name": "Category Name",
@@ -26,6 +28,7 @@
   "create_new_category": " Create New Category",
   "create_new_quiz": "Create New Quiz",
   "create_new_province": "Create New Province",
+  "create_new_tour": "Create New Tour",
   "correct": "Correct",
   "course_list": "Course List",
   "correct_answer": "Correct Answer",
@@ -48,9 +51,11 @@
   "game_name": "Game Name",
 
   "i": "I",
+  "images_details": "Image Details",
   "image": "Image",
 
   "m": "M",
+  "map_embed": "Map Embed",
   "modified_at": "Modified At",
 
   "n": "N",
@@ -89,6 +94,8 @@
   "title": "Title",
   "tourist_site_list": "Tourist Site List",
   "the_maximum_of_answer_is": "The maximum of answer is",
+  "thumbnail": "Thumbnail",
+  "tours_list": "Tourist",
   "try_your_challenge": "Try your challenge",
   "u": "U",
   "update": "Update",
@@ -96,6 +103,7 @@
   "update_quiz": "Update quiz",
   "update_category": "Update Category",
   "update_sub_category": "Update Sub Category",
+  "upload_image_details": "Upload image details",
   "user_list": "User List",
   "user_management": "User Management",
 
