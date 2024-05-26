@@ -12,10 +12,13 @@ import { appStore } from '@/stores';
 import { createI18n } from 'vue-i18n';
 import en from '@/locales/en.json';
 import kh from '@/locales/kh.json';
+import PrimeVue from 'primevue/config';
+
 
 // dotenv.config();
 const app = createApp(App);
 const pinia = createPinia();
+app.use(PrimeVue);
 app.use(ElementPlus);
 app.use(router);
 pinia.use(piniaPluginPersistedstate);
