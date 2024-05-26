@@ -58,10 +58,7 @@ export default function useProvince() {
     }
     const handleChange = async (uploadFile: UploadFile) => {
         try {
-            const formData = new FormData();
-            formData.append("file", uploadFile.raw!);
-            formData.append("folder", "provinces");
-            const result = await uploadImage(formData.get('folder'), formData)
+            const result = await uploadImage(uploadFile.raw!, 'provinces')
             provinceRequestForm.ProvinceImage = result.data.fileName;
         } catch (error) {
             console.error(error);

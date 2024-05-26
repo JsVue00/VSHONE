@@ -4,7 +4,7 @@ import { reactive, ref } from "vue";
 import type { FormRules } from 'element-plus';
 import { normalValidate } from "@/libraries/elementPlusHelper/formValidationHelper";
 import type { UploadFile } from 'element-plus'
-import api, { deleteImage } from '@/apis/api';
+import api, { deleteImage, uploadImage } from '@/apis/api';
 import notificationHelper from "@/libraries/notificationHelper";
 import formHelper from "@/libraries/elementPlusHelper/formHelper";
 
@@ -31,10 +31,7 @@ export default function useCity() {
     const fileName = ref<String>('')
     const handleChange = async (uploadFile: UploadFile,) => {
         try {
-            const formData = new FormData();
-            formData.append("file", uploadFile.raw!);
-            formData.append("folder", "cities");
-            const result = await api.post('ImageUpload/upload/' + formData.get('folder'), formData)
+            const result = await uploadImage(uploadFile.raw!, 'cities')
             cityRequestForm.CityImage = result.data.fileName;
         } catch (error) {
             console.error(error);
@@ -83,7 +80,7 @@ export default function useCity() {
                 deleteImage('cities', fileImagetoDelete.value!);
             }
             await cityApiCalling.callUpdateCity(cityId.value, cityRequestForm);
-            notificationHelper.success('', 'City Updated Successfully');
+            notificationHelper.success('', 'success');
             getAllCities();
         } catch (error) {
             console.error(error);
