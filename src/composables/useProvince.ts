@@ -6,6 +6,7 @@ import { normalValidate } from "@/libraries/elementPlusHelper/formValidationHelp
 import { deleteImage, uploadImage } from "@/apis/api";
 import notificationHelper from "@/libraries/notificationHelper";
 import formHelper from "@/libraries/elementPlusHelper/formHelper";
+import { handleSingleImageUpload } from "@/libraries/commonHelper";
 export default function useProvince() {
     const provinceData = ref<IGetProvinceResponse[]>([]);
     const isLoadinPage = ref<boolean>(false);
@@ -57,12 +58,8 @@ export default function useProvince() {
         }
     }
     const handleChange = async (uploadFile: UploadFile) => {
-        try {
-            const result = await uploadImage(uploadFile.raw!, 'provinces')
-            provinceRequestForm.ProvinceImage = result.data.fileName;
-        } catch (error) {
-            console.error(error);
-        }
+        const reponse = await handleSingleImageUpload(uploadFile, 'provinces');
+        if (reponse?.fileName) provinceRequestForm.ProvinceImage = reponse.fileName;
     }
 
     const createProvince = async () => {

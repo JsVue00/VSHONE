@@ -7,6 +7,7 @@ import type { UploadFile } from 'element-plus'
 import api, { deleteImage, uploadImage } from '@/apis/api';
 import notificationHelper from "@/libraries/notificationHelper";
 import formHelper from "@/libraries/elementPlusHelper/formHelper";
+import { handleSingleImageUpload } from "@/libraries/commonHelper";
 
 export default function useCity() {
     const dialogFormVisible = ref<boolean>(false);
@@ -28,14 +29,10 @@ export default function useCity() {
 
 
 
-    const fileName = ref<String>('')
-    const handleChange = async (uploadFile: UploadFile,) => {
-        try {
-            const result = await uploadImage(uploadFile.raw!, 'cities')
-            cityRequestForm.CityImage = result.data.fileName;
-        } catch (error) {
-            console.error(error);
-        }
+    const fileName = ref<String>('');
+    const handleChange = async (uploadFile: UploadFile) => {
+        const reponse = await handleSingleImageUpload(uploadFile, 'cities');
+        if (reponse?.fileName) cityRequestForm.CityImage = reponse.fileName;
     }
 
     const createCity = async () => {

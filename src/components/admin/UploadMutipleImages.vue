@@ -1,7 +1,7 @@
 <template>
     <div class="w-full">
         <div class="flex justify-end">
-            <el-upload :on-change="handleChange" :multiple="true" :auto-upload="false">
+            <el-upload :on-change="handleChange" accept="image/png, image/jpeg" :multiple="true" :auto-upload="false">
                 <template #trigger>
                     <el-button type="warning" size="small">{{ $t('upload_image_details') }}</el-button>
                 </template>
@@ -20,17 +20,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import type { UploadInstance } from 'element-plus'
-import {
-    CloseBold
-} from '@element-plus/icons-vue';
+import { CloseBold } from '@element-plus/icons-vue';
 interface FileList {
     name: string,
     raw: object,
 }
-
-const upload = ref<UploadInstance>()
 
 defineProps<{
     tourId: number,

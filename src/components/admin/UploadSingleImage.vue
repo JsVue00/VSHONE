@@ -6,7 +6,7 @@
       <img v-else class="h-full w-full object-contain" src="../../assets/images/noImage.jpg" alt="" />
     </div>
     <div>
-      <el-upload style="width: 100%" :auto-upload="false" :on-change="handleChange">
+      <el-upload style="width: 100%" accept="image/png, image/jpeg" :auto-upload="false" :on-change="handleChange">
         <template #trigger>
           <el-button type="warning" size="small">{{ $t('upload') }}</el-button>
         </template>
@@ -16,7 +16,6 @@
 </template>
 <script lang="ts" setup>
 import { getImage } from '@/apis/api';
-
 
 const props = defineProps({
   FileName: {

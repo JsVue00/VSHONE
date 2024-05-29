@@ -1,5 +1,6 @@
 import { deleteImage, uploadImage, uploadMultipleImages } from "@/apis/api";
 import tourApiCalling from "@/apis/tours/tourApiCalling";
+import { handleSingleImageUpload } from "@/libraries/commonHelper";
 import formHelper from "@/libraries/elementPlusHelper/formHelper";
 import { normalValidate } from "@/libraries/elementPlusHelper/formValidationHelper";
 import notificationHelper from "@/libraries/notificationHelper";
@@ -81,12 +82,8 @@ export default function useTour() {
     }
 
     const onUploadThumnail = async (uploadFile: UploadFile) => {
-        try {
-            const result = await uploadImage(uploadFile.raw!, 'TourImages%5C%5CThumbnail')
-            tourRequestForm.Thumbnail = result.data.fileName;
-        } catch (error) {
-            console.error(error);
-        }
+        const reponse = await handleSingleImageUpload(uploadFile, 'TourImages%5C%5CThumbnail');
+        if (reponse?.fileName) tourRequestForm.Thumbnail = reponse.fileName;
     }
 
     const onCacelFileUpload = (index: number) => {
