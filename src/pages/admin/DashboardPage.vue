@@ -8,7 +8,7 @@
         <div v-for="(data, index) in fakeDashboardData" :key="index"
             class="text-text2 dashboard-card  w-52 hover:w  border-primary rounded-md bg-white content-center p-4 ">
             <div class="text-2xl font-medium">{{ data.total }}</div>
-            <div>{{ data.name }}</div>
+            <div><em>{{ data.name }}</em></div>
 
         </div>
     </div>
@@ -22,7 +22,7 @@ interface FakeDashboardData {
 
 const fakeDashboardData = ref<FakeDashboardData[]>([
     { name: 'total video', total: 100 },
-    { name: 'total quizzes', total: 200 },
+    { name: 'total quizzes', total: 155 },
     { name: 'total cities', total: 300 },
     { name: 'total provinces', total: 300 },
     { name: 'total tour area', total: 300 },
@@ -31,10 +31,31 @@ const fakeDashboardData = ref<FakeDashboardData[]>([
 
 <style scoped>
 .dashboard-card:hover {
-    transition: all 0.5s ease-in-out;
+    transform: scale(1.2);
     background: var(--primary);
     color: var(--text1);
     box-shadow: 4px 4px 10px #4a739b;
+    z-index: 2;
+}
+
+.dashboard-card {
+    transition: scale(1);
+    transition: all 0.2s linear;
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-card::before {
+    content: '';
+    top: -5px;
+    right: 0;
+    right: -5px;
+    transform: (-50%, -50%);
+    width: 100px;
+    height: 12px;
+    border-radius: 10px;
+    background: rgb(4, 127, 0);
+    position: absolute;
 }
 
 .title {
