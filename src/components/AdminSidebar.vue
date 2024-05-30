@@ -1,6 +1,12 @@
 <template>
   <div :class="{ 'sidebar-close': !store.isShowSidebar }"
     class="sidebar h-[calc(100vh-50px)] bg-background1 overflow-x-hidden overflow-y-auto">
+
+    <router-link :to="{ name: 'dashboard' }">
+      <div class="text-text1 text-center py-2" :class="{ 'bg-[var(--primary)]': $route.name === 'dashboard' }">
+        {{ $t('dashboard') }}
+      </div>
+    </router-link>
     <el-col>
       <el-menu v-for="(nav, index) in navPages" :key="index" class="el-menu-vertical-demo" @open="handleOpen"
         @close="handleClose">
