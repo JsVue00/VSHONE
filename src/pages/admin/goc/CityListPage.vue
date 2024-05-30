@@ -1,19 +1,12 @@
 <template>
   <div>
     <FormHeader :title="$t('city_list')">
-      <el-button
-        type="primary"
-        @click="(dialogFormVisible = true), (isEditing = false), formHelper.clearForm(ruleFormRef)"
-        >{{ $t('create_new') }}</el-button
-      >
+      <el-button type="primary"
+        @click="(dialogFormVisible = true), (isEditing = false), formHelper.clearForm(ruleFormRef)">{{ $t('create_new')
+        }}</el-button>
     </FormHeader>
-    <el-table
-      :data="cityData"
-      border
-      v-loading="pageLoading"
-      header-cell-class-name="my-table-header"
-      style="width: 100%; box-sizing: border-box"
-    >
+    <el-table :data="cityData" border v-loading="pageLoading" header-cell-class-name="my-table-header"
+      style="width: 100%; box-sizing: border-box">
       <el-table-column :label="$t('#')" width="80" align="center">
         <template #default="scope">
           <div>
@@ -26,15 +19,11 @@
       <el-table-column prop="Image" :label="$t('image')" width="120">
         <template #default="{ row }">
           <div class="w-[100px] max-h-[100px] rounded-md overflow-hidden">
-            <img
-              class="h-full w-full object-cover"
-              :src="`https://localhost:3001/api/ImageUpload/get/cities/${row.CityImage}`"
-              alt=""
-            />
+            <img class="h-full w-full object-cover" :src="getImage('cities', row.CityImage)" alt="" />
           </div>
         </template>
       </el-table-column>
-      <el-table-column :label="$t('modified_at')">
+      <el-table-column align="center" :label="$t('modified_at')">
         <template #default="{ row }">
           <div>{{ dateTimeConverter(row.ModifiedAt) }}</div>
         </template>
@@ -43,8 +32,9 @@
       <el-table-column fixed="right" align="center" :label="$t('actions')" width="100">
         <template #default="scope">
           <el-button @click="openEditForm(scope.row.Id)" type="info" size="small">
-            {{ $t('edit') }} <el-icon class="el-icon--right"><Edit /></el-icon
-          ></el-button>
+            {{ $t('edit') }} <el-icon class="el-icon--right">
+              <Edit />
+            </el-icon></el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -52,28 +42,17 @@
     <el-dialog v-model="dialogFormVisible" :title="$t('create_city')" width="500">
       <el-form :model="cityRequestForm" :rules="rules" ref="ruleFormRef">
         <el-form-item :label="$t('city_name')" prop="CityName">
-          <el-input
-            v-model="cityRequestForm.CityName"
-            autocomplete="off"
-            placeholder="Enter the value"
-          />
+          <el-input v-model="cityRequestForm.CityName" autocomplete="off" placeholder="Enter the value" />
         </el-form-item>
         <el-form-item :label="$t('city_image')" prop="CityImage">
           <div class="flex w-full justify-between">
-            <UploadSingleImage
-              :FileName="cityRequestForm.CityImage"
-              :Folder="'cities'"
-              :handle-change="handleChange"
-            />
+            <UploadSingleImage :FileName="cityRequestForm.CityImage" :Folder="'cities'" :handle-change="handleChange" />
           </div>
         </el-form-item>
       </el-form>
       <template #footer>
         <div class="dialog-footer">
-          <el-button
-            type="primary"
-            @click="isEditing ? onSubmitUpdate(ruleFormRef) : onSubmitCreate(ruleFormRef)"
-          >
+          <el-button type="primary" @click="isEditing ? onSubmitUpdate(ruleFormRef) : onSubmitCreate(ruleFormRef)">
             {{ isEditing ? $t('update') : $t('save') }}
           </el-button>
         </div>
@@ -90,6 +69,7 @@ import UploadSingleImage from '@/components/admin/UploadSingleImage.vue';
 import type { FormInstance } from 'element-plus';
 import formHelper from '@/libraries/elementPlusHelper/formHelper';
 import { Edit } from '@element-plus/icons-vue';
+import { getImage } from '@/apis/api';
 
 const ruleFormRef = ref<FormInstance>();
 
